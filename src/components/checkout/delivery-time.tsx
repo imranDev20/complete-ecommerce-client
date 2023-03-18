@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Avatar,
   Box,
   Card,
   CardContent,
@@ -29,24 +30,22 @@ const DeliveryTime = () => {
             mb: 3,
           }}
         >
-          <Typography
-            variant="h5"
-            component="h3"
+          <Avatar
             sx={{
-              mr: 1,
               backgroundColor: "primary.main",
-              width: 35,
-              height: 35,
-              borderRadius: "50%",
-              color: "white",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              width: 30,
+              height: 30,
+              mr: 1,
             }}
           >
             1
-          </Typography>
-          <Typography variant="h5" component="h3">
+          </Avatar>
+          <Typography
+            component="h3"
+            sx={{
+              fontSize: 20,
+            }}
+          >
             Delivery Date and Time
           </Typography>
         </Box>
