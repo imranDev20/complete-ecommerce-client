@@ -2,7 +2,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import React from "react";
 
 const style = {
-  position: "absolute" as "absolute",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -13,8 +13,7 @@ const style = {
   p: 4,
 };
 
-const DeliveryAddressModal = () => {
-  const [open, setOpen] = React.useState(false);
+const DeliveryAddressModal = ({ open, setOpen }) => {
   const handleClose = () => setOpen(false);
   return (
     <div>
