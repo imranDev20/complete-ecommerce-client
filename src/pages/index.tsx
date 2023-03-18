@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           size="small"
           startIcon={<Add />}
         >
-          hello world
+          Brilliant Bhai
         </Button>
       </Box>
     </Container>
