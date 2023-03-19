@@ -14,7 +14,7 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeliveryAddressModal from "./delivery-address-modal";
 
 const DeliveryAddress = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false); // declaring the accepted type
 
   return (
     <>

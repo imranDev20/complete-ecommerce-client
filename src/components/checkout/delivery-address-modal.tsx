@@ -5,7 +5,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  Select,
+  TextField,
+} from "@mui/material";
 
+// Type Declarations
 type DeliveryAddressModalProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -25,24 +33,94 @@ function DeliveryAddressModal(props: DeliveryAddressModalProps) {
   return (
     <>
       <Dialog
+        fullWidth
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
+        <DialogTitle>Add New Address Information</DialogTitle>
+        <DialogContent sx={{ pt: 2 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+          </Grid>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
+        <DialogActions
+          sx={{
+            pb: 2,
+            px: 3,
+          }}
+        >
+          <Button
+            size="small"
+            variant="contained"
+            onClick={handleClose}
+            autoFocus
+          >
+            Save
           </Button>
         </DialogActions>
       </Dialog>
