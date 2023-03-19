@@ -13,7 +13,13 @@ const style = {
   p: 4,
 };
 
-const DeliveryAddressModal = ({ open, setOpen }) => {
+type DeliveryAddressModalProps = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
+
+const DeliveryAddressModal = (props: DeliveryAddressModalProps) => {
+  const { open, setOpen } = props;
   const handleClose = () => setOpen(false);
   return (
     <Modal
