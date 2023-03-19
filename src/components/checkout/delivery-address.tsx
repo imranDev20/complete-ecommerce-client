@@ -18,7 +18,7 @@ const DeliveryAddress = () => {
 
   return (
     <>
-      <Card sx={{ marginTop: 3 }}>
+      <Card sx={{ marginTop: 3, p: 1 }}>
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
