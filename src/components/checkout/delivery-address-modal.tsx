@@ -1,77 +1,120 @@
-import {
-  Avatar,
-  Button,
-  Dialog,
-  DialogTitle,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
 import React from "react";
-import { blue } from "@mui/material/colors";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  Select,
+  TextField,
+} from "@mui/material";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
-
-export interface SimpleDialogProps {
+// Type Declarations
+type DeliveryAddressModalProps = {
   open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
-}
-
-function SimpleDialog(props: SimpleDialogProps) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick("addAccount")}
-          >
-            <ListItemAvatar>
-              <Avatar>H</Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Dialog>
-  );
-}
-
-const DeliveryAddressModal = () => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value: string) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-  return (
-    <>
-      <SimpleDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
-    </>
-  );
+  setOpen: (open: boolean) => void;
 };
 
+function DeliveryAddressModal(props: DeliveryAddressModalProps) {
+  const { open, setOpen } = props;
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Dialog
+        fullWidth
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle>Add New Address Information</DialogTitle>
+        <DialogContent sx={{ paddingTop: "18px!important" }}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" label="Enter your name" />
+                {/* <FormHelperText>
+                  Some important helper text
+                </FormHelperText> */}
+              </FormControl>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            pb: 2,
+            px: 3,
+          }}
+        >
+          <Button size="small" variant="contained" autoFocus>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
 export default DeliveryAddressModal;

@@ -21,7 +21,7 @@ const DeliveryTime = () => {
   };
 
   return (
-    <Card>
+    <Card sx={{ p: 1 }}>
       <CardContent>
         <Box
           sx={{

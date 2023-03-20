@@ -8,19 +8,17 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeliveryAddressModal from "./delivery-address-modal";
 
 const DeliveryAddress = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = useState<boolean>(false); // declaring the accepted type
+
   return (
     <>
-      <Card sx={{ marginTop: 3 }}>
+      <Card sx={{ marginTop: 3, p: 1 }}>
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -41,7 +39,7 @@ const DeliveryAddress = () => {
             <Button
               size="small"
               variant="outlined"
-              onClick={handleClickOpen}
+              onClick={() => setOpen(!open)}
               sx={{ px: 3 }}
             >
               Add New Address
@@ -223,6 +221,7 @@ const DeliveryAddress = () => {
           </Grid>
         </CardContent>
       </Card>
+      <DeliveryAddressModal open={open} setOpen={setOpen} />
     </>
   );
 };
