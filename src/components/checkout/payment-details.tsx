@@ -10,6 +10,7 @@ import {
   Grid,
   InputLabel,
   MenuItem,
+  OutlinedInput,
   Select,
   SelectChangeEvent,
   TextField,
@@ -269,13 +270,12 @@ const PaymentDetails = () => {
                 }}
               >
                 <Grid item md={6}>
-                  <TextField
-                    fullWidth
-                    id="outlined-basic"
-                    label="Enter voucher code here"
-                    variant="outlined"
-                    size="small"
-                  />
+                  <FormControl variant="standard">
+                    <OutlinedInput
+                      id="component-simple"
+                      placeholder="Enter voucher code here..."
+                    />
+                  </FormControl>
                 </Grid>
                 <Button sx={{ marginLeft: "16px" }} variant="contained">
                   Apply

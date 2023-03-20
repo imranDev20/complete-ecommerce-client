@@ -7,15 +7,7 @@ import { Add } from "@mui/icons-material";
 import CheckoutPage from "./checkout";
 
 const Home: NextPage = () => {
-  return (
-    <div
-      style={{
-        backgroundColor: "#f6f9fc",
-      }}
-    >
-      <CheckoutPage />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Home;
