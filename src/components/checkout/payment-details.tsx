@@ -270,19 +270,22 @@ const PaymentDetails = () => {
                 }}
               >
                 <Grid item md={6}>
-                  <FormControl variant="standard">
+                  <FormControl variant="standard" fullWidth>
                     <OutlinedInput
+                      size="small"
                       id="component-simple"
                       placeholder="Enter voucher code here..."
                     />
                   </FormControl>
                 </Grid>
-                <Button sx={{ marginLeft: "16px" }} variant="contained">
-                  Apply
-                </Button>
+                <Grid item md={3}>
+                  <Button sx={{ marginLeft: "16px" }} variant="contained">
+                    Apply
+                  </Button>
+                </Grid>
               </Box>
             )}
-            <Button sx={{ marginTop: "12px" }} fullWidth variant="contained">
+            <Button sx={{ mt: 3 }} fullWidth variant="contained">
               Place Order
             </Button>
           </Box>
