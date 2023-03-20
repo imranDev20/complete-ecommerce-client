@@ -1,94 +1,76 @@
 import {
-  Box,
+  Avatar,
   Button,
   Dialog,
-  DialogActions,
-  DialogContent,
   DialogTitle,
-  IconButton,
-  Modal,
-  Typography,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
 } from "@mui/material";
 import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import styled from "@emotion/styled";
+import { blue } from "@mui/material/colors";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
+const emails = ["username@gmail.com", "user02@gmail.com"];
 
-export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose: () => void;
+export interface SimpleDialogProps {
+  open: boolean;
+  selectedValue: string;
+  onClose: (value: string) => void;
 }
 
-function BootstrapDialogTitle(props: DialogTitleProps) {
-  const { children, onClose, ...other } = props;
+function SimpleDialog(props: SimpleDialogProps) {
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleListItemClick = (value: string) => {
+    onClose(value);
+  };
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Set backup account</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        <ListItem disableGutters>
+          <ListItemButton
+            autoFocus
+            onClick={() => handleListItemClick("addAccount")}
+          >
+            <ListItemAvatar>
+              <Avatar>H</Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Add account" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Dialog>
   );
 }
 
 const DeliveryAddressModal = () => {
   const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
-  const handleClose = () => {
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value: string) => {
     setOpen(false);
+    setSelectedValue(value);
   };
   return (
-    <BootstrapDialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}
-    >
-      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Modal title
-      </BootstrapDialogTitle>
-      <DialogContent dividers>
-        <Typography gutterBottom>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </Typography>
-        <Typography gutterBottom>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-        </Typography>
-        <Typography gutterBottom>
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-          magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-          ullamcorper nulla non metus auctor fringilla.
-        </Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose}>
-          Save changes
-        </Button>
-      </DialogActions>
-    </BootstrapDialog>
+    <>
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
+    </>
   );
 };
 

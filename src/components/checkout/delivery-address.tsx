@@ -14,6 +14,10 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeliveryAddressModal from "./delivery-address-modal";
 
 const DeliveryAddress = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   return (
     <>
       <Card sx={{ marginTop: 3 }}>
@@ -37,7 +41,7 @@ const DeliveryAddress = () => {
             <Button
               size="small"
               variant="outlined"
-              // onClick={handleClickOpen}
+              onClick={handleClickOpen}
               sx={{ px: 3 }}
             >
               Add New Address
@@ -219,7 +223,6 @@ const DeliveryAddress = () => {
           </Grid>
         </CardContent>
       </Card>
-      <DeliveryAddressModal />
     </>
   );
 };

@@ -7,7 +7,7 @@ import PaymentDetails from "@/components/checkout/payment-details";
 
 const CheckoutPage = () => {
   return (
-    <Container maxWidth="lg" sx={{ marginTop: 4 }}>
+    <Container maxWidth="lg" sx={{ marginTop: 4, marginBottom: 4 }}>
       <Grid container spacing={4}>
         <Grid item md={8}>
           <DeliveryTime />
