@@ -13,7 +13,7 @@ import { Box, Container } from "@mui/material";
 
 const Hero = () => {
   return (
-    <Container component="section" maxWidth={false}>
+    <Container component="section" maxWidth={false} disableGutters>
       <CarouselProvider
         totalSlides={3}
         naturalSlideHeight={10}

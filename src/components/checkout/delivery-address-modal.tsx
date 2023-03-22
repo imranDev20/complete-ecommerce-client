@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,6 +12,8 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Save } from "@mui/icons-material";
 
 // Type Declarations
 type DeliveryAddressModalProps = {
@@ -24,6 +26,8 @@ function DeliveryAddressModal(props: DeliveryAddressModalProps) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <>
@@ -109,9 +113,13 @@ function DeliveryAddressModal(props: DeliveryAddressModalProps) {
             px: 3,
           }}
         >
-          <Button size="small" variant="contained" autoFocus>
+          <LoadingButton
+            onClick={() => setLoading(!loading)}
+            loading={loading}
+            variant="outlined"
+          >
             Save
-          </Button>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </>

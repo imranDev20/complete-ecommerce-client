@@ -27,6 +27,7 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) =>
           theme.unstable_sx({
+            borderRadius: 2,
             boxShadow: "0px 1px 3px rgba(3, 0, 71, 0.09)",
             "&:hover": {
               boxShadow: "0px 1px 3px rgba(3, 0, 71, 0.09)",

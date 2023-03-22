@@ -96,10 +96,10 @@ const DeliveryAddress = () => {
                 </Box>
                 <Box sx={{ position: "absolute", top: 2, right: 2 }}>
                   <IconButton aria-label="delete" color="primary">
-                    <CreateOutlinedIcon />
+                    <CreateOutlinedIcon fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="delete" color="primary">
-                    <DeleteOutlineOutlinedIcon />
+                    <DeleteOutlineOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Box>
               </Box>
@@ -153,10 +153,10 @@ const DeliveryAddress = () => {
                 </Box>
                 <Box sx={{ position: "absolute", top: 2, right: 2 }}>
                   <IconButton aria-label="delete" color="primary">
-                    <CreateOutlinedIcon />
+                    <CreateOutlinedIcon fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="delete" color="primary">
-                    <DeleteOutlineOutlinedIcon />
+                    <DeleteOutlineOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Box>
               </Box>
@@ -210,10 +210,10 @@ const DeliveryAddress = () => {
                 </Box>
                 <Box sx={{ position: "absolute", top: 2, right: 2 }}>
                   <IconButton aria-label="delete" color="primary">
-                    <CreateOutlinedIcon />
+                    <CreateOutlinedIcon fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="delete" color="primary">
-                    <DeleteOutlineOutlinedIcon />
+                    <DeleteOutlineOutlinedIcon fontSize="small" />
                   </IconButton>
                 </Box>
               </Box>
