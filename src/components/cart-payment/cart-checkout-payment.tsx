@@ -13,10 +13,13 @@ import {
   Button,
 } from "@mui/material";
 
-const CartCheckoutPayment = () => {
+const CartCheckoutPayment = ({
+  handleCard1,
+  handleCard2,
+  showPayment1Card,
+  showPayment2Card,
+}: any) => {
   const [age, setAge] = React.useState("");
-  const [creditCard, setCreditCard] = React.useState(false);
-  const [paypalCard, setPaypalCard] = React.useState(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);
@@ -32,7 +35,11 @@ const CartCheckoutPayment = () => {
             marginBottom: "24px",
           }}
         >
-          <Checkbox onClick={() => setCreditCard(!creditCard)} size="small" />
+          <Checkbox
+            checked={showPayment1Card}
+            onClick={handleCard1}
+            size="small"
+          />
           <Typography
             sx={{
               fontSize: "14px",
@@ -44,7 +51,7 @@ const CartCheckoutPayment = () => {
           </Typography>
         </Box>
         <Divider sx={{ marginBottom: "24px" }} />
-        {creditCard && (
+        {showPayment1Card && (
           <Grid container spacing={3}>
             <Grid item md={6}>
               <FormControl fullWidth>
@@ -100,7 +107,11 @@ const CartCheckoutPayment = () => {
             marginBottom: "24px",
           }}
         >
-          <Checkbox onClick={() => setPaypalCard(!paypalCard)} size="small" />
+          <Checkbox
+            checked={showPayment2Card}
+            onClick={handleCard2}
+            size="small"
+          />
           <Typography
             sx={{
               fontSize: "14px",
@@ -111,7 +122,7 @@ const CartCheckoutPayment = () => {
             Pay with Paypal
           </Typography>
         </Box>
-        {paypalCard && (
+        {showPayment2Card && (
           <Grid
             container
             spacing={3}
@@ -153,7 +164,7 @@ const CartCheckoutPayment = () => {
               color: "#2b3445",
             }}
           >
-            Pay with Paypal
+            Cash on Delivery
           </Typography>
         </Box>
       </CardContent>
