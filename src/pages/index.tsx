@@ -1,13 +1,9 @@
 import * as React from "react";
 import type { NextPage } from "next";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
-import { Add } from "@mui/icons-material";
-import CheckoutPage from "./checkout";
+import Hero from "../components/home/hero";
 
 const Home: NextPage = () => {
-  return <div></div>;
+  return <Hero />;
 };
 
 export default Home;
