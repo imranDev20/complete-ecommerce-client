@@ -52,7 +52,7 @@ const ProfileSidebar = ({ children }: ProfileSidebarProps) => {
           >
             {groups.map((sectionId) => (
               <li key={`section-${sectionId}`}>
-                <Box component="ul" sx={{ mb: 3, p: 0 }}>
+                <Box component="ul" sx={{ mb: 2, p: 0 }}>
                   <ListSubheader
                     sx={{
                       fontWeight: 400,

@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileSidebar from "../../components/global/profile-sidebar";
+import ProfileSidebar from "../../components/shared/profile-sidebar";
 
 const Profile = () => {
   return <ProfileSidebar>Profile</ProfileSidebar>;

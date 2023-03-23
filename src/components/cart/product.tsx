@@ -3,10 +3,8 @@ import {
   Badge,
   Box,
   Button,
-  ButtonGroup,
   Card,
   CardContent,
-  FormControlLabel,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -26,8 +24,15 @@ const CartProduct = () => {
 
   return (
     <Box>
-      <Card sx={{ marginBottom: "24px" }}>
-        <CardContent sx={{ padding: 0, paddingBottom: 0 }}>
+      <Card elevation={0} sx={{ marginBottom: "24px" }}>
+        <CardContent
+          sx={{
+            padding: 0,
+            "&:last-child": {
+              pb: 0,
+            },
+          }}
+        >
           <Box
             sx={{ display: "flex", alignItems: "center", position: "relative" }}
           >
@@ -57,7 +62,7 @@ const CartProduct = () => {
                 <Typography
                   sx={{
                     marginLeft: 1,
-                    color: "#d23f57",
+                    color: "primary.main",
                     fontWeight: 600,
                     fontSize: "14px",
                   }}
@@ -65,11 +70,16 @@ const CartProduct = () => {
                   $210.00
                 </Typography>
               </Box>
+
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Button
                   size="small"
                   aria-label="reduce"
                   variant="outlined"
+                  sx={{
+                    minWidth: "unset",
+                    p: 0.7,
+                  }}
                   onClick={() => {
                     setCount(Math.max(count - 1, 1));
                   }}
@@ -90,6 +100,10 @@ const CartProduct = () => {
                   size="small"
                   aria-label="increase"
                   variant="outlined"
+                  sx={{
+                    minWidth: "unset",
+                    p: 0.7,
+                  }}
                   onClick={() => {
                     setCount(count + 1);
                   }}
@@ -107,7 +121,7 @@ const CartProduct = () => {
           </Box>
         </CardContent>
       </Card>
-      <Card sx={{ marginBottom: "24px" }}>
+      {/* <Card sx={{ marginBottom: "24px" }}>
         <CardContent sx={{ padding: 0, paddingBottom: 0 }}>
           <Box
             sx={{ display: "flex", alignItems: "center", position: "relative" }}
@@ -268,7 +282,7 @@ const CartProduct = () => {
             </IconButton>
           </Box>
         </CardContent>
-      </Card>
+      </Card> */}
     </Box>
   );
 };
