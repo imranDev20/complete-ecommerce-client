@@ -1,9 +1,9 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
-import CartShippingAddress from "../components/cart-checkout/cart-shipping-address";
-import CartBillingAddress from "../components/cart-checkout/cart-billing-address";
-import PaymentBackButton from "../components/cart-checkout/payment-back-button";
-import CartCheckoutTotal from "../components/cart-checkout/cart-checkout-total";
+import CartShippingAddress from "../components/checkout/shipping-address";
+import CartBillingAddress from "../components/checkout/billing-address";
+import PaymentBackButton from "../components/checkout/payment-back-button";
+import CartCheckoutTotal from "../components/checkout/checkout-total";
 
 const CartCheckout = () => {
   return (

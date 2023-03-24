@@ -6,14 +6,17 @@ import StepButton from "@mui/material/StepButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container, StepLabel } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 const steps = ["Cart", "Details", "Payment", "Review"];
 
-type CartCheckoutWrapper = {
+type CartCheckoutWrapperProps = {
   children: React.ReactNode;
 };
 
-export default function CartCheckoutWrapper({ children }: CartCheckoutWrapper) {
+export default function CartCheckoutWrapper({
+  children,
+}: CartCheckoutWrapperProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;

@@ -143,7 +143,7 @@ const CartProductTotal = () => {
             Calculate Shipping
           </Button>
           <Button sx={{ marginBottom: "16px" }} fullWidth variant="contained">
-            Calculate Shipping
+            Checkout Now
           </Button>
         </Box>
       </CardContent>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
-import CartCheckoutPayment from "../components/cart-payment/cart-checkout-payment";
-import PlaceorderCheckoutButton from "../components/cart-payment/placeorder-checkout-button";
-import CartPaymentTotal from "../components/cart-payment/cart-payment-total";
+import CartCheckoutPayment from "../components/payment/payment";
+import PlaceorderCheckoutButton from "../components/payment/placeorder-checkout-button";
+import CartPaymentTotal from "../components/payment/payment-total";
 
 const CartPayment = () => {
   const [showPayment1Card, setShowPayment1Card] = React.useState(false);

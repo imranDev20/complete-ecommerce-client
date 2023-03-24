@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
-import DeliveryTime from "@/components/checkout/delivery-time";
-import CheckoutOrder from "@/components/checkout/checkout-order";
-import DeliveryAddress from "@/components/checkout/delivery-address";
-import PaymentDetails from "@/components/checkout/payment-details";
+import DeliveryTime from "@/components/quick-checkout/delivery-time";
+import CheckoutOrder from "@/components/quick-checkout/checkout-order";
+import DeliveryAddress from "@/components/quick-checkout/delivery-address";
+import PaymentDetails from "@/components/quick-checkout/payment-details";
 
 const CheckoutPage = () => {
   return (
