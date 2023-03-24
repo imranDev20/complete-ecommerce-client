@@ -1,5 +1,13 @@
 import { createTheme } from "@mui/material/styles";
 
+// declare module '@mui/material/Card' {
+//   interface CardPropsVariantOverrides {
+//     product: true;
+//   }
+// }
+
+
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -34,6 +42,23 @@ const theme = createTheme({
             },
           }),
       },
+      // variants:[
+      //   {
+      //     props: { variant: "white" },
+      //     style: ({ theme }) =>
+      //       theme.unstable_sx({
+      //         borderRadius: 0,
+      //         bgcolor: "white",
+      //         color: "primary.main",
+      //         "&:hover": {
+      //           bgcolor: "primary.main",
+      //           color: "white",
+      //         },
+      //         px: 3,
+      //         py: 1,
+      //       }),
+      //   },
+      // ]
     },
   },
 });
