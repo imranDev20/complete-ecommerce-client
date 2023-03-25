@@ -11,10 +11,10 @@ const Home: NextPage = () => {
       <Hero />
       <Container>
         <Grid container spacing={3}>
-          <Grid item md={4}>
+          <Grid item md={3}>
             <ProductMenu />
           </Grid>
-          <Grid item md={8}>
+          <Grid item md={9}>
             <Product />
           </Grid>
         </Grid>
