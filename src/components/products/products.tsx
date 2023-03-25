@@ -71,16 +71,149 @@ const Product = () => {
   ];
 
   return (
-    <Container>
-      <Grid container spacing={4} sx={{ marginY: 3 }}>
+    // <Grid container spacing={4} sx={{ marginY: 3 }}>
+    //   {products.map((product) => (
+    //     <Grid key={product.id} item md={4}>
+    //       <Card elevation={0} sx={{ position: "relative" }}>
+    //         <CardMedia
+    //           component="img"
+    //           alt="product image"
+    //           image={product.image}
+    //         />
+    //         <Typography
+    //           sx={{
+    //             position: "absolute",
+    //             top: "10px",
+    //             left: "10px",
+    //             fontSize: "10px",
+    //             paddingX: "10px",
+    //             paddingY: "4px",
+    //             backgroundColor: "#4E97FD",
+    //             color: "white",
+    //             borderRadius: "16px",
+    //             fontWeight: 600,
+    //           }}
+    //         >
+    //           25% off
+    //         </Typography>
+    //         <Divider />
+    //         <CardContent
+    //           sx={{
+    //             display: "flex",
+    //             justifyContent: "space-between",
+    //           }}
+    //         >
+    //           <Box>
+    //             <Typography
+    //               sx={{
+    //                 fontSize: "14px",
+    //                 fontWeight: 600,
+    //                 marginBottom: "8px",
+    //               }}
+    //             >
+    //               {product.name}
+    //             </Typography>
+    //             <Rating name="read-only" value={value} readOnly />
+    //             <Box
+    //               sx={{
+    //                 display: "flex",
+    //                 alignItems: "center",
+    //                 gap: "8px",
+    //                 marginTop: "4px",
+    //               }}
+    //             >
+    //               <Typography
+    //                 sx={{
+    //                   color: "#4E97FD",
+    //                   fontWeight: 600,
+    //                   fontSize: "14px",
+    //                 }}
+    //               >
+    //                 {product.offerPrice}
+    //               </Typography>
+    //               <Typography
+    //                 sx={{
+    //                   color: "#7d879c",
+    //                   fontSize: "14px",
+    //                   fontWeight: 600,
+    //                   textDecoration: "line-through",
+    //                 }}
+    //               >
+    //                 {product.discountPrice}
+    //               </Typography>
+    //             </Box>
+    //           </Box>
+    //           {count > 0 ? (
+    //             <Box
+    //               sx={{
+    //                 display: "flex",
+    //                 flexDirection: "column-reverse",
+    //                 justifyContent: "space-between",
+    //                 alignItems: "center",
+    //               }}
+    //             >
+    //               <Button
+    //                 onClick={() => {
+    //                   setCount(count + 1);
+    //                 }}
+    //                 size="small"
+    //                 variant="outlined"
+    //                 aria-label="add"
+    //                 sx={{ padding: "2px", minWidth: "unset" }}
+    //               >
+    //                 <AddIcon />
+    //               </Button>
+    //               <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
+    //                 {count}
+    //               </Typography>
+    //               <Button
+    //                 onClick={() => {
+    //                   setCount(Math.max(count - 1));
+    //                 }}
+    //                 size="small"
+    //                 variant="outlined"
+    //                 aria-label="remove"
+    //                 sx={{ padding: "2px", minWidth: "unset" }}
+    //               >
+    //                 <RemoveIcon />
+    //               </Button>
+    //             </Box>
+    //           ) : (
+    //             <Box
+    //               sx={{
+    //                 display: "flex",
+    //                 flexDirection: "column",
+    //                 justifyContent: "end",
+    //               }}
+    //             >
+    //               <Button
+    //                 onClick={() => {
+    //                   setCount(count + 1);
+    //                 }}
+    //                 size="small"
+    //                 variant="outlined"
+    //                 aria-label="add"
+    //                 sx={{ padding: "2px", minWidth: "unset" }}
+    //               >
+    //                 <AddIcon />
+    //               </Button>
+    //             </Box>
+    //           )}
+    //         </CardContent>
+    //       </Card>
+    //     </Grid>
+    //   ))}
+    // </Grid>
+    <Card sx={{ position: "relative" }}>
+      <Grid container spacing={2}>
         {products.map((product) => (
-          <Grid key={product.id} item md={3}>
-            <Card elevation={0} sx={{ position: "relative" }}>
-              <CardMedia
-                component="img"
-                alt="product image"
-                image={product.image}
-              />
+          <Grid key={product.id} item md={4}>
+            <CardMedia
+              component="img"
+              alt="product image"
+              image={product.image}
+            />
+            <CardContent>
               <Typography
                 sx={{
                   position: "absolute",
@@ -201,11 +334,11 @@ const Product = () => {
                   </Box>
                 )}
               </CardContent>
-            </Card>
+            </CardContent>
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Card>
   );
 };
 
