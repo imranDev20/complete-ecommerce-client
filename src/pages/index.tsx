@@ -1,12 +1,24 @@
 import * as React from "react";
 import type { NextPage } from "next";
 import Hero from "../components/home/hero";
-import { Box, Grid } from "@mui/material";
+import Product from "@/components/products/products";
+import { Container, Grid } from "@mui/material";
+import ProductMenu from "@/components/products/product-menu";
 
 const Home: NextPage = () => {
   return (
     <>
       <Hero />
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item md={4}>
+            <ProductMenu />
+          </Grid>
+          <Grid item md={8}>
+            <Product />
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };
