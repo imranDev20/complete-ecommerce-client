@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  //   border: `1px solid ${theme.palette.divider}`,
+  marginBottom: 3,
   "&:not(:last-child)": {
     borderBottom: 0,
   },
@@ -26,10 +26,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
+  backgroundColor: "#f3f5f9",
   flexDirection: "row",
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
@@ -41,7 +38,6 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  //   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
 const CatagoriesAccordion = ({ catagory }: any) => {
@@ -58,7 +54,12 @@ const CatagoriesAccordion = ({ catagory }: any) => {
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
       >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+        <AccordionSummary
+          sx={{ p: 0, m: 0 }}
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+        >
+          <Typography>{catagory.icon}</Typography>
           <Typography>{catagory.name}</Typography>
         </AccordionSummary>
         {catagory.subCatagory.map((sub: any) => (

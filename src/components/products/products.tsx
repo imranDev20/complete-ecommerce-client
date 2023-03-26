@@ -81,7 +81,7 @@ const Product = () => {
     <Grid container spacing={2}>
       {products.map((product) => (
         <Grid key={product.id} item md={4}>
-          <Card sx={{ p: 0 }}>
+          <Card sx={{ p: 0, position: "relative" }}>
             <CardMedia
               component="img"
               alt="product image"
