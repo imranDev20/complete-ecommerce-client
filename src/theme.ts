@@ -6,8 +6,6 @@ import { createTheme } from "@mui/material/styles";
 //   }
 // }
 
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -59,6 +57,27 @@ const theme = createTheme({
       //       }),
       //   },
       // ]
+    },
+
+    MuiCardContent: {
+      styleOverrides: {
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            "&:last-child": {
+              paddingBottom: "inherit",
+              padding: "16px",
+            },
+          }),
+      },
+    },
+
+    MuiButton: {
+      styleOverrides: {
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            minWidth: "initial",
+          }),
+      },
     },
   },
 });

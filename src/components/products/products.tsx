@@ -5,23 +5,30 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Container,
-  Divider,
   Grid,
   Rating,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
+type Product = {
+  readonly id: number;
+  name: string;
+  image: string;
+  offerPrice: string;
+  discountPrice: string;
+};
+
+type Products = Product[];
+
 const Product = () => {
   const [count, setCount] = React.useState(0);
   const [value, setValue] = React.useState<number | null>(6);
 
-  const products = [
+  const products: Products = [
     {
-      id: "1",
+      id: 1,
       name: "Mi Led Smart Watch",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75",
@@ -29,7 +36,7 @@ const Product = () => {
       discountPrice: "$180.00",
     },
     {
-      id: "2",
+      id: 2,
       name: "Classic Rolex Watch",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75",
@@ -37,7 +44,7 @@ const Product = () => {
       discountPrice: "$350.00",
     },
     {
-      id: "3",
+      id: 3,
       name: "Iphone 13 Pro Max",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75",
@@ -45,7 +52,7 @@ const Product = () => {
       discountPrice: "$150.00",
     },
     {
-      id: "4",
+      id: 4,
       name: "Mi Led Smart Watch",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75",
@@ -53,7 +60,7 @@ const Product = () => {
       discountPrice: "$180.00",
     },
     {
-      id: "5",
+      id: 5,
       name: "Classic Rolex Watch",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75",
@@ -61,7 +68,7 @@ const Product = () => {
       discountPrice: "$350.00",
     },
     {
-      id: "6",
+      id: 6,
       name: "Iphone 13 Pro Max",
       image:
         "https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75",
@@ -80,6 +87,8 @@ const Product = () => {
               alt="product image"
               image={product.image}
             />
+
+            {/* <Divider /> */}
 
             <Typography
               sx={{
@@ -114,7 +123,22 @@ const Product = () => {
                 >
                   {product.name}
                 </Typography>
-                <Rating name="read-only" value={value} readOnly />
+                <Box
+                  sx={{
+                    width: 200,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Rating
+                    size="small"
+                    name="read-only"
+                    value={value}
+                    readOnly
+                  />
+                  <Box sx={{ ml: 0.5 }}>(4.5)</Box>
+                </Box>
+
                 <Box
                   sx={{
                     display: "flex",
@@ -130,7 +154,7 @@ const Product = () => {
                       fontSize: "14px",
                     }}
                   >
-                    {product.offerPrice}
+                    US{product.offerPrice}
                   </Typography>
                   <Typography
                     sx={{
