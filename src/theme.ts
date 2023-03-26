@@ -76,6 +76,7 @@ const theme = createTheme({
         root: ({ theme }) =>
           theme.unstable_sx({
             minWidth: "initial",
+            textTransform: "none",
           }),
       },
     },
