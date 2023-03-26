@@ -118,7 +118,7 @@ const Product = () => {
                   sx={{
                     fontSize: "14px",
                     fontWeight: 500,
-                    marginBottom: "8px",
+                    mb: 1,
                   }}
                 >
                   {product.name}
@@ -128,6 +128,7 @@ const Product = () => {
                     width: 200,
                     display: "flex",
                     alignItems: "center",
+                    mb: 1,
                   }}
                 >
                   <Rating

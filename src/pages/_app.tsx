@@ -1,10 +1,12 @@
 import * as React from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
+
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+
 import { Provider } from "react-redux";
-import { store } from "../app/store";
+import { store } from "../redux/store";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/createEmotionCache";
 import theme from "@/theme";
