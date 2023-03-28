@@ -4,50 +4,51 @@ import {
   Button,
   Card,
   CardContent,
+  CardMedia,
   IconButton,
-  Paper,
   Typography,
 } from "@mui/material";
 import React from "react";
-import PlaceIcon from "@mui/icons-material/Place";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddNewAddress from "@/components/profile/add-new-address";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import AddPayment from "@/components/profile/add-payment";
 
-const Address = () => {
-  const [showAddress, setShowAddress] = React.useState(false);
-  const address = [
+const PaymentMethod = () => {
+  const [showPayment, setShowPayment] = React.useState(false);
+  const payments = [
     {
       id: "1",
-      name: "Office",
-      address: "497 Erdman Passage, New Zoietown",
-      phone: "(213) 840-9416",
+      name: "Ralf Edward",
+      image: "https://bazaar.ui-lib.com/assets/images/payment-methods/Amex.svg",
+      number: "1234 **** **** ****",
+      date: "08 / 2022",
     },
     {
       id: "2",
-      name: "Shop",
-      address: "497 Erdman Passage, New Zoietown",
-      phone: "(213) 840-9416",
+      name: "Ralf Edward",
+      image:
+        "https://bazaar.ui-lib.com/assets/images/payment-methods/Mastercard.svg",
+      number: "1234 **** **** ****",
+      date: "10 / 2025",
     },
     {
       id: "3",
-      name: "Garage",
-      address: "497 Erdman Passage, New Zoietown",
-      phone: "(213) 840-9416",
+      name: "Ralf Edward",
+      image:
+        "https://bazaar.ui-lib.com/assets/images/payment-methods/PayPal.svg",
+      number: "ui-lib@email.com",
+      date: "N/A",
     },
     {
       id: "4",
-      name: "Resturant",
-      address: "497 Erdman Passage, New Zoietown",
-      phone: "(213) 840-9416",
-    },
-    {
-      id: "5",
-      name: "Coffe House",
-      address: "497 Erdman Passage, New Zoietown",
-      phone: "(213) 840-9416",
+      name: "Ralf Edward",
+      image: "https://bazaar.ui-lib.com/assets/images/payment-methods/Visa.svg",
+      number: "1234 **** **** ****",
+      date: "08 / 2022",
     },
   ];
+
   return (
     <ProfileSidebar>
       <Box
@@ -59,7 +60,7 @@ const Address = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <PlaceIcon sx={{ fontSize: "25px", color: "#4e97fd" }} />
+          <CreditCardIcon sx={{ fontSize: "25px", color: "#4e97fd" }} />
           <Typography
             sx={{
               fontSize: "25px",
@@ -68,11 +69,11 @@ const Address = () => {
               fontWeight: 700,
             }}
           >
-            My Addresses
+            Payment Methods
           </Typography>
         </Box>
         <Button
-          onClick={() => setShowAddress(!showAddress)}
+          onClick={() => setShowPayment(!showPayment)}
           variant="contained"
           size="small"
           sx={{
@@ -80,13 +81,13 @@ const Address = () => {
             fontSize: "14px",
           }}
         >
-          {!showAddress ? "Add New Address" : "Back To Address"}
+          {!showPayment ? "Add New Payment Method" : "Back To Payment Methods"}
         </Button>
       </Box>
-      {!showAddress ? (
+      {!showPayment ? (
         <Box>
-          {address.map((add) => (
-            <Card key={add.id} sx={{ marginY: "16px" }}>
+          {payments.map((payment) => (
+            <Card key={payment.id} sx={{ marginY: "16px" }}>
               <CardContent
                 sx={{
                   display: "flex",
@@ -94,32 +95,47 @@ const Address = () => {
                   alignItems: "center",
                 }}
               >
-                <Typography
+                <Box
                   sx={{
+                    display: "flex",
+                    alignItems: "center",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: "0px",
-                    margin: "6px",
-                    fontSize: "14px",
-                    fontWeight: 400,
-                    color: "#2b3445",
                   }}
                 >
-                  {add.name}
-                </Typography>
+                  <Box sx={{ widht: "42px", height: "28px" }}>
+                    <CardMedia
+                      sx={{ width: "100%" }}
+                      component="img"
+                      image={payment.image}
+                      alt="card"
+                    />
+                  </Box>
+                  <Typography
+                    sx={{
+                      margin: "6px",
+                      fontSize: "16px",
+                      fontWeight: 600,
+                      color: "#2b3445",
+                    }}
+                  >
+                    {payment.name}
+                  </Typography>
+                </Box>
 
                 <Typography
                   sx={{
                     flexGrow: 1,
                     flexShrink: 1,
-                    flexBasis: "250px",
+                    flexBasis: "0px",
                     fontSize: "14px",
                     fontWeight: 400,
                     color: "#2b3445",
                     margin: "6px",
                   }}
                 >
-                  {add.address}
+                  {payment.number}
                 </Typography>
                 <Typography
                   sx={{
@@ -132,7 +148,7 @@ const Address = () => {
                     color: "#2b3445",
                   }}
                 >
-                  {add.phone}
+                  {payment.date}
                 </Typography>
                 <Box>
                   <IconButton aria-label="edit" size="large">
@@ -147,10 +163,10 @@ const Address = () => {
           ))}
         </Box>
       ) : (
-        <AddNewAddress />
+        <AddPayment />
       )}
     </ProfileSidebar>
   );
 };
 
-export default Address;
+export default PaymentMethod;
