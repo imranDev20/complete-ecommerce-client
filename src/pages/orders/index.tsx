@@ -1,17 +1,23 @@
+import React from "react";
 import ProfileSidebar from "@/components/shared/profile-sidebar";
 import {
   Box,
-  Button,
+  Card,
+  CardContent,
   Chip,
   IconButton,
-  Paper,
+  Pagination,
   Typography,
 } from "@mui/material";
-import React from "react";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import EastIcon from "@mui/icons-material/East";
 
 const Orders = () => {
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   const orders = [
     {
       id: "1",
@@ -31,32 +37,19 @@ const Orders = () => {
     {
       id: "3",
       orderId: "f0ba538b",
-      satus: "Processing",
+      satus: "Delivered",
       date: "Nov 10, 2022",
       price: "$350.00",
     },
     {
       id: "4",
       orderId: "f0ba538b",
-      satus: "Delivered",
-      date: "Nov 10, 2022",
-      price: "$350.00",
-    },
-    {
-      id: "5",
-      orderId: "f0ba538b",
       satus: "Cancelled",
       date: "Nov 10, 2022",
       price: "$350.00",
     },
-    {
-      id: "6",
-      orderId: "f0ba538b",
-      satus: "Delivered",
-      date: "Nov 10, 2022",
-      price: "$350.00",
-    },
   ];
+
   return (
     <ProfileSidebar>
       <Box
@@ -80,112 +73,110 @@ const Orders = () => {
           </Typography>
         </Box>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          paddingX: "18px",
-        }}
-      >
-        <Typography
-          sx={{
-            marginX: "6px",
-            textAlign: "left",
-            fontSize: "16px",
-            fontWeight: 500,
-            color: "#7d879f",
-            flexGrow: 1,
-            flexShrink: 1,
-            flexBasis: "0px",
-          }}
-        >
-          Order #
-        </Typography>
-        <Typography
-          sx={{
-            marginX: "6px",
-            textAlign: "left",
-            fontSize: "16px",
-            fontWeight: 500,
-            color: "#7d879f",
-            flexGrow: 1,
-            flexShrink: 1,
-            flexBasis: "0px",
-          }}
-        >
-          Status
-        </Typography>
-        <Typography
-          sx={{
-            marginX: "6px",
-            textAlign: "left",
-            fontSize: "16px",
-            fontWeight: 500,
-            color: "#7d879f",
-            flexGrow: 1,
-            flexShrink: 1,
-            flexBasis: "0px",
-          }}
-        >
-          Date purchased
-        </Typography>
-        <Typography
-          sx={{
-            marginX: "6px",
-            textAlign: "left",
-            fontSize: "16px",
-            fontWeight: 500,
-            color: "#7d879f",
-            flexGrow: 1,
-            flexShrink: 1,
-            flexBasis: "0px",
-          }}
-        >
-          Total
-        </Typography>
-      </Box>
       <Box>
-        {orders.map((order) => (
-          <Paper
-            key={order.id}
-            elevation={1}
+        <Card>
+          <CardContent
             sx={{
-              paddingX: "16px",
-              paddingY: "12px",
-              marginY: "16px",
               display: "flex",
-              justifyContent: "space-between",
+              flexWrap: "wrap",
               alignItems: "center",
             }}
           >
             <Typography
               sx={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#2b3445",
+                marginX: "6px",
                 textAlign: "left",
+                fontSize: "16px",
+                fontWeight: 500,
+                color: "#7d879f",
                 flexGrow: 1,
                 flexShrink: 1,
                 flexBasis: "0px",
-                margin: "6px",
               }}
             >
-              {order.orderId}
+              Order #
             </Typography>
-            <Box
+            <Typography
               sx={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#2b3445",
+                marginX: "6px",
                 textAlign: "left",
+                fontSize: "16px",
+                fontWeight: 500,
+                color: "#7d879f",
                 flexGrow: 1,
                 flexShrink: 1,
                 flexBasis: "0px",
-                margin: "6px",
               }}
             >
-              {/* {order.satus === "pending" ? (
+              Status
+            </Typography>
+            <Typography
+              sx={{
+                marginX: "6px",
+                textAlign: "left",
+                fontSize: "16px",
+                fontWeight: 500,
+                color: "#7d879f",
+                flexGrow: 1,
+                flexShrink: 1,
+                flexBasis: "0px",
+              }}
+            >
+              Date purchased
+            </Typography>
+            <Typography
+              sx={{
+                marginX: "6px",
+                textAlign: "left",
+                fontSize: "16px",
+                fontWeight: 500,
+                color: "#7d879f",
+                flexGrow: 1,
+                flexShrink: 1,
+                flexBasis: "0px",
+              }}
+            >
+              Total
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box>
+        {orders.map((order) => (
+          <Card key={order.id} sx={{ marginY: "16px" }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
+              <Typography
+                sx={{
+                  flexGrow: 1,
+                  flexShrink: 1,
+                  flexBasis: "0px",
+                  margin: "6px",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  color: "#2b3445",
+                }}
+              >
+                {order.orderId}
+              </Typography>
+
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  flexShrink: 1,
+                  flexBasis: "0px",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  margin: "6px",
+                  color: "#2b3445",
+                }}
+              >
                 <Chip
                   label={order.satus}
                   size="small"
@@ -199,120 +190,90 @@ const Orders = () => {
                     paddingY: "4px",
                     paddingX: "8px",
                     fontSize: "12px",
-                    color: "#0c0e30",
-                    backgroundColor: "#e8e8ee",
+                    // #0c0e30
+                    color:
+                      order.satus === "Pending"
+                        ? "#0c0e30"
+                        : order.satus === "Processing"
+                        ? "#0c0e30"
+                        : order.satus === "Delivered"
+                        ? "#0b7724"
+                        : order.satus === "Cancelled"
+                        ? "#ff2929"
+                        : null,
+
+                    backgroundColor:
+                      order.satus === "Pending"
+                        ? "#e8e8ee"
+                        : order.satus === "Processing"
+                        ? "#e8e8ee"
+                        : order.satus === "Delivered"
+                        ? "#e7f9ed"
+                        : order.satus === "Cancelled"
+                        ? "#ffeaea"
+                        : null,
                   }}
                 />
-              ) : order.satus === "processing" ? (
-                <Chip
-                  label={order.satus}
-                  size="small"
-                  sx={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "24px",
-                    borderRadius: "16px",
-                    cursor: "default",
-                    paddingY: "4px",
-                    paddingX: "8px",
-                    fontSize: "12px",
-                    color: "#0c0e30",
-                    backgroundColor: "#e8e8ee",
-                  }}
-                />
-              ) : order.satus === "delivered" ? (
-                <Chip
-                  label={order.satus}
-                  size="small"
-                  sx={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "24px",
-                    borderRadius: "16px",
-                    cursor: "default",
-                    paddingY: "4px",
-                    paddingX: "8px",
-                    fontSize: "12px",
-                    color: "#0c0e30",
-                    backgroundColor: "#e8e8ee",
-                  }}
-                />
-              ) : (
-                order.satus === "cancelled" && (
-                  <Chip
-                    label={order.satus}
-                    size="small"
-                    sx={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      height: "24px",
-                      borderRadius: "16px",
-                      cursor: "default",
-                      paddingY: "4px",
-                      paddingX: "8px",
-                      fontSize: "12px",
-                      color: "#0c0e30",
-                      backgroundColor: "#e8e8ee",
-                    }}
-                  />
-                )
-              )} */}
-              <Chip
-                label={order.satus}
+              </Box>
+              <Typography
+                sx={{
+                  flexGrow: 1,
+                  flexShrink: 1,
+                  flexBasis: "0px",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  margin: "6px",
+                  color: "#2b3445",
+                }}
+              >
+                {order.date}
+              </Typography>
+              <Typography
+                sx={{
+                  flexGrow: 1,
+                  flexShrink: 1,
+                  flexBasis: "0px",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  margin: "6px",
+                  color: "#2b3445",
+                }}
+              >
+                {order.price}
+              </Typography>
+
+              <IconButton
+                aria-label="edit"
                 size="small"
                 sx={{
+                  position: "absolute",
                   display: "inline-flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  height: "24px",
-                  borderRadius: "16px",
-                  cursor: "default",
-                  paddingY: "4px",
-                  paddingX: "8px",
-                  fontSize: "12px",
-                  color: "#0c0e30",
-                  backgroundColor: "#e8e8ee",
+                  top: 19,
+                  right: 24,
                 }}
-              />
-            </Box>
-            <Typography
-              sx={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#2b3445",
-                textAlign: "left",
-                flexGrow: 1,
-                flexShrink: 1,
-                flexBasis: "0px",
-                margin: "6px",
-              }}
-            >
-              {order.date}
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: "14px",
-                fontWeight: 400,
-                color: "#2b3445",
-                textAlign: "left",
-                flexGrow: 1,
-                flexShrink: 1,
-                flexBasis: "0px",
-                margin: "6px",
-              }}
-            >
-              {order.price}
-            </Typography>
-            <Typography sx={{ flexGrow: 0, flexShrink: 0, flexBasis: "0px" }}>
-              <IconButton aria-label="edit" size="small">
+              >
                 <EastIcon fontSize="small" />
               </IconButton>
-            </Typography>
-          </Paper>
+            </CardContent>
+          </Card>
         ))}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "40px",
+          marginBottom: "30px",
+        }}
+      >
+        <Pagination
+          variant="outlined"
+          color="primary"
+          count={10}
+          page={page}
+          onChange={handleChange}
+        />
       </Box>
     </ProfileSidebar>
   );

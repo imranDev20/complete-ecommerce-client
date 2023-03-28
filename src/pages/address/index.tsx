@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   IconButton,
+  Pagination,
   Paper,
   Typography,
 } from "@mui/material";
@@ -16,6 +17,11 @@ import AddNewAddress from "@/components/profile/add-new-address";
 
 const Address = () => {
   const [showAddress, setShowAddress] = React.useState(false);
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   const address = [
     {
       id: "1",
@@ -149,6 +155,22 @@ const Address = () => {
       ) : (
         <AddNewAddress />
       )}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "40px",
+          marginBottom: "30px",
+        }}
+      >
+        <Pagination
+          variant="outlined"
+          color="primary"
+          count={10}
+          page={page}
+          onChange={handleChange}
+        />
+      </Box>
     </ProfileSidebar>
   );
 };
