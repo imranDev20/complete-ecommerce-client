@@ -1,3 +1,5 @@
+import ProductDescription from "@/components/products/product-description";
+import ProductDescriptionReview from "@/components/products/product-description-review";
 import {
   Avatar,
   Box,
@@ -11,6 +13,16 @@ import React from "react";
 
 const ProductDetails = () => {
   const [value, setValue] = React.useState<number | null>(6);
+  const [openBorder, setOpenBorder] = React.useState(false);
+  const [closeBorder, setCloseBorder] = React.useState(false);
+  const handleOpenBorder = () => {
+    setOpenBorder(true);
+    setCloseBorder(false);
+  };
+  const handleCloseBorder = () => {
+    setCloseBorder(true);
+    setOpenBorder(false);
+  };
 
   return (
     <Container>
@@ -257,6 +269,9 @@ const ProductDetails = () => {
           </Box>
         </Grid>
       </Grid>
+      <Box>
+        <ProductDescriptionReview />
+      </Box>
     </Container>
   );
 };
