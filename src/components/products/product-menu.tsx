@@ -1,53 +1,64 @@
 import React from "react";
 import { Button, Stack, Typography } from "@mui/material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import MasksOutlinedIcon from "@mui/icons-material/MasksOutlined";
 import DeviceThermostatOutlinedIcon from "@mui/icons-material/DeviceThermostatOutlined";
-import HeatPumpOutlinedIcon from "@mui/icons-material/HeatPumpOutlined";
 import SanitizerOutlinedIcon from "@mui/icons-material/SanitizerOutlined";
 import Face4OutlinedIcon from "@mui/icons-material/Face4Outlined";
 import BatterySaverOutlinedIcon from "@mui/icons-material/BatterySaverOutlined";
 import FireExtinguisherOutlinedIcon from "@mui/icons-material/FireExtinguisherOutlined";
 import TapasOutlinedIcon from "@mui/icons-material/TapasOutlined";
 import CatagoriesAccordion from "./catagories-accordion";
+import {
+  AllProductsIcon,
+  EyeglassIcon,
+  FaceMaskIcon,
+  HomeIcon,
+  LotionIcon,
+  MakeupIcon,
+  MascaraIcon,
+  PowderIcon,
+  PumpIcon,
+  ThermoMeterIcon,
+  TrendIcon,
+  TrophyIcon,
+  WheelIcon,
+} from "../global/svg-icons";
 
 const ProductMenu = () => {
   const catagories = [
     {
       id: "1",
       name: "Home",
-      icon: <HomeOutlinedIcon />,
+      icon: <HomeIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
     {
       id: "2",
       name: "Popular Product",
-      icon: <EmojiEventsOutlinedIcon />,
+      icon: <TrophyIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
     {
       id: "3",
       name: "Trending Product",
-      icon: <TrendingUpOutlinedIcon />,
+      icon: <TrendIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
     {
       id: "4",
       name: "All Product",
-      icon: <FormatListBulletedOutlinedIcon />,
+      icon: <AllProductsIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
     {
       id: "5",
       name: "Heath and Beauty",
-      icon: <Face4OutlinedIcon />,
+      icon: <MakeupIcon inheritViewBox />,
       link: "",
 
       subCatagory: [
@@ -68,7 +79,7 @@ const ProductMenu = () => {
     {
       id: "6",
       name: "Maskara",
-      icon: <TapasOutlinedIcon />,
+      icon: <MascaraIcon inheritViewBox />,
       link: "",
       subCatagory: [
         {
@@ -88,7 +99,7 @@ const ProductMenu = () => {
     {
       id: "7",
       name: "Lotion",
-      icon: <SanitizerOutlinedIcon />,
+      icon: <LotionIcon inheritViewBox />,
       link: "",
       subCatagory: [
         {
@@ -107,8 +118,8 @@ const ProductMenu = () => {
     },
     {
       id: "8",
-      name: "Powder",
-      icon: <BatterySaverOutlinedIcon />,
+      name: "Makeup",
+      icon: <MakeupIcon inheritViewBox />,
       link: "",
       subCatagory: [
         {
@@ -127,8 +138,8 @@ const ProductMenu = () => {
     },
     {
       id: "9",
-      name: "Face Mask",
-      icon: <MasksOutlinedIcon />,
+      name: "Powder",
+      icon: <PowderIcon inheritViewBox />,
       link: "",
       subCatagory: [
         {
@@ -147,28 +158,55 @@ const ProductMenu = () => {
     },
     {
       id: "10",
-      name: "Digital Thermometer",
-      icon: <DeviceThermostatOutlinedIcon />,
-      link: "https://bazaar.ui-lib.com/healthbeauty-shop",
-      subCatagory: [],
+      name: "Face Mask",
+      icon: <FaceMaskIcon inheritViewBox />,
+      link: "",
+      subCatagory: [
+        {
+          id: "1",
+          name: "Beauty Item",
+        },
+        {
+          id: "2",
+          name: "Medicine Item",
+        },
+        {
+          id: "3",
+          name: "Mackup Item",
+        },
+      ],
     },
     {
       id: "11",
-      name: "Oxyzen Pump",
-      icon: <FireExtinguisherOutlinedIcon />,
+      name: "Digital Thermometer",
+      icon: <ThermoMeterIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
     {
       id: "12",
+      name: "Oxyzen Pump",
+      icon: <PumpIcon inheritViewBox />,
+      link: "https://bazaar.ui-lib.com/healthbeauty-shop",
+      subCatagory: [],
+    },
+    {
+      id: "13",
+      name: "Lens Case Kit",
+      icon: <EyeglassIcon inheritViewBox />,
+      link: "https://bazaar.ui-lib.com/healthbeauty-shop",
+      subCatagory: [],
+    },
+    {
+      id: "14",
       name: "Automotive",
-      icon: <HeatPumpOutlinedIcon />,
+      icon: <WheelIcon inheritViewBox />,
       link: "https://bazaar.ui-lib.com/healthbeauty-shop",
       subCatagory: [],
     },
   ];
   return (
-    <Stack spacing={0}>
+    <Stack spacing={0} sx={{ backgroundColor: "white" }}>
       <Typography
         sx={{
           backgroundColor: "#b8defe",
@@ -200,18 +238,26 @@ const ProductMenu = () => {
                 paddingX: "11px",
                 paddingY: "8px",
                 textTransform: "capitalize",
+                borderRadius: 0,
+                fontSize: "14px",
+                color: "text.secondary",
+                fontWeight: 500,
+
+                "& .MuiSvgIcon-root": {
+                  color: "text.secondary",
+                },
+                "&:hover": {
+                  color: "primary.main",
+                  backgroundColor: "primary.light",
+
+                  "& .MuiSvgIcon-root": {
+                    color: "primary.main",
+                  },
+                },
               }}
               key={catagory.id}
             >
-              <Typography
-                sx={{
-                  fontSize: "14px",
-                  color: "#4b566b",
-                  fontWeight: 500,
-                }}
-              >
-                {catagory.name}
-              </Typography>
+              {catagory.name}
             </Button>
           );
         }

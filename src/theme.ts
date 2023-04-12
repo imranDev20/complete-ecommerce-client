@@ -19,6 +19,12 @@ const theme = createTheme({
     },
     background: {
       default: "#F7F9FC",
+      paper: "#fff",
+    },
+    text: {
+      primary: "#243445",
+      secondary: "#4b566b",
+      disabled: "rgba(144,60,60,0.38)",
     },
   },
   components: {

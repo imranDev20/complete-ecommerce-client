@@ -1,16 +1,11 @@
 import * as React from "react";
-import type {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  NextPage,
-} from "next";
+import type { NextPage } from "next";
 
 import Hero from "@/components/home/hero";
 import Product from "@/components/products/products";
 import ProductMenu from "@/components/products/product-menu";
 
 import { Container, Grid } from "@mui/material";
-import { getProducts } from "@/services/product-services";
 
 const Home: NextPage = () => {
   return (

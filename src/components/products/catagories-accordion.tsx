@@ -7,6 +7,7 @@ import MuiAccordionSummary, {
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import { Box, ButtonBase } from "@mui/material";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -55,13 +56,39 @@ const CatagoriesAccordion = ({ catagory }: any) => {
         onChange={handleChange("panel1")}
       >
         <AccordionSummary
-          sx={{ p: 0, m: 0 }}
+          disableRipple={false}
+          sx={{
+            px: "8px",
+            py: "5px",
+            width: "inherit",
+            minHeight: "initial",
+            "& .MuiAccordionSummary-content": {
+              m: 0,
+            },
+          }}
           aria-controls="panel1d-content"
           id="panel1d-header"
         >
-          <Typography>{catagory.icon}</Typography>
-          <Typography>{catagory.name}</Typography>
+          <Box
+            sx={{
+              mr: "8px",
+              ml: "-4px",
+            }}
+          >
+            {catagory.icon}
+          </Box>
+          <Typography
+            sx={{
+              fontSize: 14,
+              color: "text.secondary",
+              fontWeight: 500,
+              lineHeight: 1.75,
+            }}
+          >
+            {catagory.name}
+          </Typography>
         </AccordionSummary>
+
         {catagory.subCatagory.map((sub: any) => (
           <AccordionDetails key={sub.id}>
             <Typography>{sub.name}</Typography>
