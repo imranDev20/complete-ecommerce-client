@@ -58,12 +58,27 @@ const CatagoriesAccordion = ({ catagory }: any) => {
         <AccordionSummary
           disableRipple={false}
           sx={{
-            px: "8px",
-            py: "5px",
+            p: "8px",
             width: "inherit",
             minHeight: "initial",
+
+            transition:
+              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+
             "& .MuiAccordionSummary-content": {
               m: 0,
+              alignItems: "center",
+            },
+
+            "&:hover": {
+              backgroundColor: "primary.light",
+              "& .MuiTypography-root": {
+                color: "primary.main",
+              },
+              "& .MuiSvgIcon-root": {
+                color: "primary.main",
+                transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+              },
             },
           }}
           aria-controls="panel1d-content"
@@ -73,6 +88,9 @@ const CatagoriesAccordion = ({ catagory }: any) => {
             sx={{
               mr: "8px",
               ml: "-4px",
+              "& .MuiSvgIcon-root": {
+                fontSize: 20,
+              },
             }}
           >
             {catagory.icon}
@@ -83,6 +101,7 @@ const CatagoriesAccordion = ({ catagory }: any) => {
               color: "text.secondary",
               fontWeight: 500,
               lineHeight: 1.75,
+              transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             }}
           >
             {catagory.name}
@@ -90,8 +109,40 @@ const CatagoriesAccordion = ({ catagory }: any) => {
         </AccordionSummary>
 
         {catagory.subCatagory.map((sub: any) => (
-          <AccordionDetails key={sub.id}>
-            <Typography>{sub.name}</Typography>
+          <AccordionDetails key={sub.id} sx={{ p: 0 }}>
+            <ButtonBase
+              sx={{
+                py: "10.75px",
+                width: "100%",
+                justifyContent: "start",
+
+                "&:hover": {
+                  backgroundColor: "primary.light",
+
+                  "& .MuiTypography-root": {
+                    color: "primary.main",
+                  },
+                  "& .MuiBox-root": {
+                    backgroundColor: "primary.main",
+                  },
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  ml: 5,
+                  mr: 1.3,
+                  backgroundColor: "#7d879c",
+
+                  height: 4,
+                  width: 4,
+                  borderRadius: 4,
+                }}
+              ></Box>
+              <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
+                {sub.name}
+              </Typography>
+            </ButtonBase>
           </AccordionDetails>
         ))}
       </Accordion>

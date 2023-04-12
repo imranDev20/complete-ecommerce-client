@@ -65,14 +65,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -85,14 +88,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -105,14 +111,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -125,14 +134,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -145,14 +157,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -165,14 +180,17 @@ const ProductMenu = () => {
         {
           id: "1",
           name: "Beauty Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "2",
           name: "Medicine Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
         {
           id: "3",
           name: "Mackup Item",
+          link: "https://bazaar.ui-lib.com/healthbeauty-shop",
         },
       ],
     },
@@ -236,7 +254,7 @@ const ProductMenu = () => {
                 backgroundColor: "#f3f5f9",
                 marginBottom: "3px",
                 paddingX: "11px",
-                paddingY: "8px",
+                paddingY: "9px",
                 textTransform: "capitalize",
                 borderRadius: 0,
                 fontSize: "14px",
