@@ -224,7 +224,13 @@ const ProductMenu = () => {
     },
   ];
   return (
-    <Stack spacing={0} sx={{ backgroundColor: "white" }}>
+    <Stack
+      spacing={0}
+      sx={{
+        backgroundColor: "white",
+        boxShadow: "0px 2px 3px rgba(3, 0, 71, 0.05)",
+      }}
+    >
       <Typography
         sx={{
           backgroundColor: "#b8defe",
@@ -253,6 +259,9 @@ const ProductMenu = () => {
                 alignItems: "center",
                 backgroundColor: "#f3f5f9",
                 marginBottom: "3px",
+                "&:last-of-type": {
+                  marginBottom: "0",
+                },
                 paddingX: "11px",
                 paddingY: "9px",
                 textTransform: "capitalize",
@@ -263,6 +272,7 @@ const ProductMenu = () => {
 
                 "& .MuiSvgIcon-root": {
                   color: "text.secondary",
+                  transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 },
                 "&:hover": {
                   color: "primary.main",

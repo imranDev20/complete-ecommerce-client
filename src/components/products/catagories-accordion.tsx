@@ -77,7 +77,6 @@ const CatagoriesAccordion = ({ catagory }: any) => {
               },
               "& .MuiSvgIcon-root": {
                 color: "primary.main",
-                transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               },
             },
           }}
@@ -89,6 +88,7 @@ const CatagoriesAccordion = ({ catagory }: any) => {
               mr: "8px",
               ml: "-4px",
               "& .MuiSvgIcon-root": {
+                transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                 fontSize: 20,
               },
             }}
@@ -115,6 +115,8 @@ const CatagoriesAccordion = ({ catagory }: any) => {
                 py: "10.75px",
                 width: "100%",
                 justifyContent: "start",
+                transition:
+                  "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
 
                 "&:hover": {
                   backgroundColor: "primary.light",
@@ -133,13 +135,20 @@ const CatagoriesAccordion = ({ catagory }: any) => {
                   ml: 5,
                   mr: 1.3,
                   backgroundColor: "#7d879c",
-
+                  transition:
+                    "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
                   height: 4,
                   width: 4,
                   borderRadius: 4,
                 }}
               ></Box>
-              <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
+              <Typography
+                sx={{
+                  fontSize: 14,
+                  color: "text.secondary",
+                  transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                }}
+              >
                 {sub.name}
               </Typography>
             </ButtonBase>
