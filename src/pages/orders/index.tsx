@@ -12,7 +12,7 @@ import {
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import EastIcon from "@mui/icons-material/East";
 
-const Orders = () => {
+const OrdersPage = () => {
   const [page, setPage] = React.useState(1);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -279,4 +279,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default OrdersPage;

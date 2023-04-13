@@ -9,20 +9,23 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
-const ProductDetails = () => {
-  const [value, setValue] = React.useState<number | null>(6);
-  const [openBorder, setOpenBorder] = React.useState(false);
-  const [closeBorder, setCloseBorder] = React.useState(false);
-  const handleOpenBorder = () => {
-    setOpenBorder(true);
-    setCloseBorder(false);
-  };
-  const handleCloseBorder = () => {
-    setCloseBorder(true);
-    setOpenBorder(false);
-  };
+const ProductDetailsPage = () => {
+  const [value, setValue] = useState<number | null>(6);
+  const [product, setProduct] = useState({});
+
+  const router = useRouter();
+
+  const { productSlug } = router.query;
+  const slugSplit = productSlug?.toString().split("-");
+
+  useEffect(() => {
+    if (slugSplit && slugSplit.length > 0) {
+      const productId = slugSplit[slugSplit.length - 1];
+    }
+  }, [slugSplit]);
 
   return (
     <Container>
@@ -269,11 +272,9 @@ const ProductDetails = () => {
           </Box>
         </Grid>
       </Grid>
-      <Box>
-        <ProductDescriptionReview />
-      </Box>
+      <Box>{/* <ProductDescriptionReview /> */}</Box>
     </Container>
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsPage;

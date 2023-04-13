@@ -15,7 +15,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import AddPayment from "@/components/profile/add-payment";
 
-const PaymentMethod = () => {
+const PaymentMethodPage = () => {
   const [showPayment, setShowPayment] = React.useState(false);
 
   const [page, setPage] = React.useState(1);
@@ -192,4 +192,4 @@ const PaymentMethod = () => {
   );
 };
 
-export default PaymentMethod;
+export default PaymentMethodPage;

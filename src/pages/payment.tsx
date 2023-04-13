@@ -4,7 +4,7 @@ import CartCheckoutPayment from "../components/payment/payment";
 import PlaceorderCheckoutButton from "../components/payment/placeorder-checkout-button";
 import CartPaymentTotal from "../components/payment/payment-total";
 
-const CartPayment = () => {
+const PaymentPage = () => {
   const [showPayment1Card, setShowPayment1Card] = React.useState(false);
   const [showPayment2Card, setShowPayment2Card] = React.useState(false);
   const handleCard1 = () => {
@@ -35,4 +35,4 @@ const CartPayment = () => {
   );
 };
 
-export default CartPayment;
+export default PaymentPage;

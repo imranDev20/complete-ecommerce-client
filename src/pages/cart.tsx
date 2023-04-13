@@ -4,7 +4,7 @@ import React from "react";
 import CartProduct from "../components/cart/product";
 import CartProductTotal from "../components/cart/product-total";
 
-const Cart = () => {
+const CartPage = () => {
   return (
     <CartCheckoutWrapper>
       <Grid container spacing={4}>
@@ -18,4 +18,4 @@ const Cart = () => {
     </CartCheckoutWrapper>
   );
 };
-export default Cart;
+export default CartPage;

@@ -5,7 +5,7 @@ import CheckoutOrder from "@/components/quick-checkout/checkout-order";
 import DeliveryAddress from "@/components/quick-checkout/delivery-address";
 import PaymentDetails from "@/components/quick-checkout/payment-details";
 
-const CheckoutPage = () => {
+const QuickCheckoutPage = () => {
   return (
     <Container maxWidth="lg" sx={{ marginTop: 4, marginBottom: 4 }}>
       <Grid container spacing={4}>
@@ -22,4 +22,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default QuickCheckoutPage;

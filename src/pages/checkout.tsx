@@ -5,7 +5,7 @@ import CartBillingAddress from "../components/checkout/billing-address";
 import PaymentBackButton from "../components/checkout/payment-back-button";
 import CartCheckoutTotal from "../components/checkout/checkout-total";
 
-const CartCheckout = () => {
+const CartCheckoutPage = () => {
   return (
     <Container maxWidth="lg" sx={{ marginTop: 4 }}>
       <Grid container spacing={4}>
@@ -22,4 +22,4 @@ const CartCheckout = () => {
   );
 };
 
-export default CartCheckout;
+export default CartCheckoutPage;

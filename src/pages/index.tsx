@@ -7,7 +7,7 @@ import ProductMenu from "@/components/products/product-menu";
 
 import { Container, Grid } from "@mui/material";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <>
       <Hero />
@@ -25,4 +25,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;
