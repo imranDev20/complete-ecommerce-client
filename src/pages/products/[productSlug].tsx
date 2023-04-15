@@ -1,5 +1,6 @@
 import ProductDescription from "@/components/products/product-description";
 import ProductDescriptionReview from "@/components/products/product-description-review";
+
 import {
   Avatar,
   Box,
@@ -9,23 +10,23 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { GetServerSidePropsContext, NextPage } from "next";
+import React, { useState } from "react";
+import { Product as ProductType } from "@/common/types/product.types";
+import { getProductDetails } from "@/services/product-services";
+import Image from "next/image";
+import { NumericFormat } from "react-number-format";
 
-const ProductDetailsPage = () => {
+type ProductProps = {
+  product: ProductType;
+};
+
+const ProductDetailsPage: NextPage<ProductProps> = ({
+  product,
+}: ProductProps) => {
   const [value, setValue] = useState<number | null>(6);
-  const [product, setProduct] = useState({});
 
-  const router = useRouter();
-
-  const { productSlug } = router.query;
-  const slugSplit = productSlug?.toString().split("-");
-
-  useEffect(() => {
-    if (slugSplit && slugSplit.length > 0) {
-      const productId = slugSplit[slugSplit.length - 1];
-    }
-  }, [slugSplit]);
+  console.log(product);
 
   return (
     <Container>
@@ -45,18 +46,15 @@ const ProductDetailsPage = () => {
               display: "flex",
               justifyContent: "center",
               marginBottom: "48px",
-              width: "300px",
-              height: "300px",
             }}
           >
-            <Avatar
-              src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=384&q=75"
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-              variant="square"
+            <Image
+              src={product.image}
+              alt={product.name}
+              height={300}
+              width={300}
+              quality={100}
+              priority
             />
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -77,10 +75,12 @@ const ProductDetailsPage = () => {
                 overflow: "hidden",
               }}
             >
-              <Avatar
-                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=384&q=75"
-                sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-                variant="square"
+              <Image
+                src={product.image}
+                alt={product.name}
+                height={64}
+                width={64}
+                quality={60}
               />
             </Box>
             <Box
@@ -100,14 +100,12 @@ const ProductDetailsPage = () => {
                 overflow: "hidden",
               }}
             >
-              <Avatar
-                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=384&q=75"
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-                variant="square"
+              <Image
+                src={product.image}
+                alt={product.name}
+                height={64}
+                width={64}
+                quality={60}
               />
             </Box>
           </Box>
@@ -117,7 +115,7 @@ const ProductDetailsPage = () => {
             <Typography
               sx={{ fontSize: "30px", fontWeight: 700, marginBottom: "8px" }}
             >
-              Classic Rolex Watch
+              {product.name}
             </Typography>
             <Box
               sx={{
@@ -130,7 +128,7 @@ const ProductDetailsPage = () => {
               <Typography
                 sx={{ fontSize: "14px", fontWeight: 600, color: "#2b3445" }}
               >
-                Xiaomi
+                {product.brand}
               </Typography>
             </Box>
             <Box
@@ -143,7 +141,7 @@ const ProductDetailsPage = () => {
               <Typography
                 sx={{ fontSize: "14px", fontWeight: 400, color: "#2b3445" }}
               >
-                Rated:
+                Rating:
               </Typography>
               <Rating
                 sx={{ mx: "8px" }}
@@ -155,7 +153,7 @@ const ProductDetailsPage = () => {
               <Typography
                 sx={{ fontSize: "14px", fontWeight: 600, color: "#2b3445" }}
               >
-                (50)
+                ({product.rating})
               </Typography>
             </Box>
             <Box sx={{ marginBottom: "16px" }}>
@@ -217,14 +215,25 @@ const ProductDetailsPage = () => {
                   color: "#4e97fd",
                 }}
               >
-                $350.00
+                US$
+                <NumericFormat
+                  value={
+                    product.offerPrice
+                      ? product.offerPrice
+                      : product.regularPrice
+                  }
+                  thousandsGroupStyle="thousand"
+                  thousandSeparator=","
+                  displayType="text"
+                  renderText={(value) => <b>{value}</b>}
+                />
               </Typography>
               <Typography
                 sx={{
                   fontSize: "14px",
                 }}
               >
-                Stock Available
+                {product.stock > 0 ? "Stock Available" : "Stock Unavailable"}
               </Typography>
             </Box>
             <Box sx={{ marginBottom: "30px" }}>
@@ -278,3 +287,27 @@ const ProductDetailsPage = () => {
 };
 
 export default ProductDetailsPage;
+
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { params } = context;
+
+  if (params) {
+    const slug = params.productSlug?.toString().split("-");
+
+    if (slug && slug.length > 0) {
+      const productId = slug[slug?.length - 1];
+
+      const productDetails = await getProductDetails(productId);
+
+      const product = productDetails.data.data;
+
+      return {
+        props: {
+          product,
+        },
+      };
+    }
+  }
+};

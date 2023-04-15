@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  images: {
+    domains: ["bazaar.ui-lib.com"],
+  },
+
   // This code handles svg to icon component
   webpack(config) {
     // Grab the existing rule that handles SVG imports

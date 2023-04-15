@@ -4,24 +4,18 @@ import {
   Button,
   Card,
   CardContent,
-  CardMedia,
   Rating,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import Link from "next/link";
-import slugify from "slugify";
 import { slugifyTitle } from "@/common/utils/functions";
+import { Product as ProductType } from "@/common/types/product.types";
+import Link from "next/link";
+import Image from "next/image";
 
 type ProductCardProps = {
-  product: {
-    readonly id: number;
-    name: string;
-    image: string;
-    offerPrice: string;
-    discountPrice: string;
-  };
+  product: ProductType;
 };
 
 const ProductCard = (props: ProductCardProps) => {
@@ -34,8 +28,10 @@ const ProductCard = (props: ProductCardProps) => {
 
   return (
     <Card sx={{ p: 0, position: "relative" }}>
-      <Link href={`/products/${slug}-${product.id}`}>
-        <CardMedia component="img" alt="product image" image={product.image} />
+      <Link href={`/products/${slug}-${product._id}`}>
+        <Box sx={{ height: 283, position: "relative" }}>
+          <Image src={product.image} alt={product.name} fill quality={100} />
+        </Box>
       </Link>
 
       {/* <Divider /> */}
@@ -100,7 +96,7 @@ const ProductCard = (props: ProductCardProps) => {
                 fontSize: "14px",
               }}
             >
-              US{product.offerPrice}
+              US{product.regularPrice}
             </Typography>
             <Typography
               sx={{
@@ -110,7 +106,7 @@ const ProductCard = (props: ProductCardProps) => {
                 textDecoration: "line-through",
               }}
             >
-              {product.discountPrice}
+              {product.offerPrice}
             </Typography>
           </Box>
         </Box>

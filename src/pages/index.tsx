@@ -2,12 +2,18 @@ import * as React from "react";
 import type { NextPage } from "next";
 
 import Hero from "@/components/home/hero";
-import Product from "@/components/products/products";
 import ProductMenu from "@/components/products/product-menu";
+import Products from "@/components/products/products";
 
 import { Container, Grid } from "@mui/material";
+import { getProducts } from "@/services/product-services";
+import { Products as ProductsType } from "@/common/types/product.types";
 
-const HomePage: NextPage = () => {
+type ProductsProps = {
+  products: ProductsType;
+};
+
+const HomePage: NextPage<ProductsProps> = ({ products }: ProductsProps) => {
   return (
     <>
       <Hero />
@@ -17,7 +23,7 @@ const HomePage: NextPage = () => {
             <ProductMenu />
           </Grid>
           <Grid item md={9}>
-            <Product />
+            <Products products={products} />
           </Grid>
         </Grid>
       </Container>
@@ -26,3 +32,21 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+export const getServerSideProps = async () => {
+  try {
+    const products = await getProducts();
+
+    if (products.data.success) {
+      return {
+        props: {
+          products: products.data.data,
+        },
+      };
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
