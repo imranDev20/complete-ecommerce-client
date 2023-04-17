@@ -6,12 +6,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { Provider } from "react-redux";
-import { store } from "../redux/store";
+import { persistor, store } from "../redux/store";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/createEmotionCache";
 import theme from "@/theme";
 import Header from "@/components/global/header";
 import Footer from "@/components/global/footer";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -28,13 +29,15 @@ export default function MyApp(props: MyAppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
-        </ThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
     </CacheProvider>
   );

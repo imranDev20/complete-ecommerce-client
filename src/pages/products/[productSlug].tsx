@@ -2,20 +2,57 @@ import ProductDescription from "@/components/products/product-description";
 import ProductDescriptionReview from "@/components/products/product-description-review";
 
 import {
-  Avatar,
   Box,
   Button,
   Container,
   Grid,
   Rating,
+  ToggleButton,
+  ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/system";
 import { GetServerSidePropsContext, NextPage } from "next";
-import React, { useState } from "react";
+import React from "react";
 import { Product as ProductType } from "@/common/types/product.types";
 import { getProductDetails } from "@/services/product-services";
 import Image from "next/image";
 import { NumericFormat } from "react-number-format";
+import { addToCart } from "@/redux/slices/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
+const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  ".MuiToggleButtonGroup-grouped:not(:first-of-type)": {
+    marginLeft: "unset",
+    borderTopLeftRadius: "inherit",
+    borderBottomLeftRadius: "inherit",
+    borderLeft: 0,
+  },
+  ".MuiToggleButtonGroup-grouped:not(:last-of-type)": {
+    borderTopRightRadius: "inherit",
+    borderBottomRightRadius: "inherit",
+  },
+  ".MuiToggleButtonGroup-grouped": {
+    border: 0,
+    marginRight: 8,
+    paddingTop: "5px",
+    paddingBottom: "5px",
+    paddingLeft: 14,
+    paddingRight: 14,
+    textTransform: "capitalize",
+    transition:
+      "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+    backgroundColor: "rgba(0, 0, 0, 0.08)",
+  },
+
+  ".MuiToggleButtonGroup-grouped.Mui-selected": {
+    backgroundColor: theme.palette.primary.main,
+    color: "white",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+}));
 
 type ProductProps = {
   product: ProductType;
@@ -24,9 +61,12 @@ type ProductProps = {
 const ProductDetailsPage: NextPage<ProductProps> = ({
   product,
 }: ProductProps) => {
-  const [value, setValue] = useState<number | null>(6);
+  const cart = useAppSelector((state) => state.cart.products);
+  const dispatch = useAppDispatch();
 
-  console.log(product);
+  const [alignment, setAlignment] = React.useState("web");
+
+  console.log(cart);
 
   return (
     <Container>
@@ -144,67 +184,53 @@ const ProductDetailsPage: NextPage<ProductProps> = ({
                 Rating:
               </Typography>
               <Rating
-                sx={{ mx: "8px" }}
                 size="small"
-                name="read-only"
-                value={value}
+                sx={{ mx: "8px" }}
+                name="half-rating-read"
+                defaultValue={product.rating}
+                precision={0.1}
                 readOnly
               />
+
               <Typography
                 sx={{ fontSize: "14px", fontWeight: 600, color: "#2b3445" }}
               >
                 ({product.rating})
               </Typography>
             </Box>
-            <Box sx={{ marginBottom: "16px" }}>
-              <Typography
-                sx={{
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  marginBottom: "8px",
-                  color: "#2b3445",
-                }}
-              >
-                Option
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Option 1
-                </Button>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Option 2
-                </Button>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Option 3
-                </Button>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Option 4
-                </Button>
+
+            {product.attributes.map((item, index) => (
+              <Box sx={{ marginBottom: "16px" }} key={index}>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    marginBottom: "8px",
+                    color: "#2b3445",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {item.name}
+                </Typography>
+                <CustomToggleButtonGroup
+                  color="primary"
+                  value={alignment}
+                  exclusive
+                  size="small"
+                  onChange={(e: React.MouseEvent<HTMLElement>, value: string) =>
+                    setAlignment(value)
+                  }
+                  aria-label="Platform"
+                >
+                  {item.value.map((val) => (
+                    <ToggleButton key={val} value="web">
+                      {val} {item.unit}
+                    </ToggleButton>
+                  ))}
+                </CustomToggleButtonGroup>
               </Box>
-            </Box>
-            <Box sx={{ marginBottom: "16px" }}>
-              <Typography
-                sx={{
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  marginBottom: "8px",
-                  color: "#2b3445",
-                }}
-              >
-                Type
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Type 1
-                </Button>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Type 2
-                </Button>
-                <Button variant="contained" sx={{ mr: "8px" }}>
-                  Type 3
-                </Button>
-              </Box>
-            </Box>
+            ))}
+
             <Box sx={{ paddingTop: "9px", marginBottom: "24px" }}>
               <Typography
                 sx={{
@@ -240,6 +266,8 @@ const ProductDetailsPage: NextPage<ProductProps> = ({
               <Button
                 size="large"
                 variant="contained"
+                disableElevation
+                onClick={() => dispatch(addToCart(product))}
                 sx={{
                   py: "6px",
                   px: "25px",
@@ -298,9 +326,7 @@ export const getServerSideProps = async (
 
     if (slug && slug.length > 0) {
       const productId = slug[slug?.length - 1];
-
       const productDetails = await getProductDetails(productId);
-
       const product = productDetails.data.data;
 
       return {

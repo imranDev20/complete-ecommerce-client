@@ -13,18 +13,23 @@ import { slugifyTitle } from "@/common/utils/functions";
 import { Product as ProductType } from "@/common/types/product.types";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
 
 type ProductCardProps = {
   product: ProductType;
 };
 
 const ProductCard = (props: ProductCardProps) => {
-  const [count, setCount] = React.useState(0);
-  const [value, setValue] = React.useState<number | null>(6);
+  const cart = useAppSelector((state) => state.cart.products);
+  const dispatch = useAppDispatch();
+
+  console.log(cart);
 
   const { product } = props;
 
   const slug = slugifyTitle(product.name);
+  const sameItemCount = cart.filter((item) => item._id === product._id).length;
 
   return (
     <Card sx={{ p: 0, position: "relative" }}>
@@ -77,8 +82,14 @@ const ProductCard = (props: ProductCardProps) => {
               mb: 1,
             }}
           >
-            <Rating size="small" name="read-only" value={value} readOnly />
-            <Box sx={{ ml: 0.5 }}>(4.5)</Box>
+            <Rating
+              size="small"
+              name="read-only"
+              value={product.rating}
+              precision={0.1}
+              readOnly
+            />
+            <Box sx={{ ml: 0.5 }}>({product.rating})</Box>
           </Box>
 
           <Box
@@ -110,62 +121,42 @@ const ProductCard = (props: ProductCardProps) => {
             </Typography>
           </Box>
         </Box>
-        {count > 0 ? (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column-reverse",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column-reverse",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Button
+            size="small"
+            variant="outlined"
+            aria-label="add"
+            onClick={() => dispatch(addToCart(product))}
+            sx={{ padding: "2px", minWidth: "unset" }}
           >
-            <Button
-              onClick={() => {
-                setCount(count + 1);
-              }}
-              size="small"
-              variant="outlined"
-              aria-label="add"
-              sx={{ padding: "2px", minWidth: "unset" }}
-            >
-              <AddIcon />
-            </Button>
-            <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
-              {count}
-            </Typography>
-            <Button
-              onClick={() => {
-                setCount(Math.max(count - 1));
-              }}
-              size="small"
-              variant="outlined"
-              aria-label="remove"
-              sx={{ padding: "2px", minWidth: "unset" }}
-            >
-              <RemoveIcon />
-            </Button>
-          </Box>
-        ) : (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "end",
-            }}
-          >
-            <Button
-              onClick={() => {
-                setCount(count + 1);
-              }}
-              size="small"
-              variant="outlined"
-              aria-label="add"
-              sx={{ padding: "2px", minWidth: "unset" }}
-            >
-              <AddIcon />
-            </Button>
-          </Box>
-        )}
+            <AddIcon />
+          </Button>
+
+          {sameItemCount > 0 ? (
+            <>
+              <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
+                {sameItemCount}
+              </Typography>
+              <Button
+                onClick={() => dispatch(deleteFromCart(product._id))}
+                size="small"
+                variant="outlined"
+                aria-label="remove"
+                sx={{ padding: "2px", minWidth: "unset" }}
+              >
+                <RemoveIcon />
+              </Button>
+            </>
+          ) : null}
+        </Box>
       </CardContent>
     </Card>
   );

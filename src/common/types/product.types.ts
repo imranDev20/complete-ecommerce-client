@@ -1,6 +1,7 @@
 type Attributes = {
   name: string;
   value: string[];
+  unit: string | null;
 };
 
 type Reviews = {

@@ -1,7 +1,17 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 
 const CheckoutOrder = () => {
+  const cart = useAppSelector((state) => state.cart.products);
+  const dispatch = useAppDispatch();
+
+  console.log(cart);
+
+  const uniqueProducts = cart.filter(
+    (value, index, self) => index === self.findIndex((t) => t._id === value._id)
+  );
+
   return (
     <Box>
       <Typography
@@ -14,42 +24,32 @@ const CheckoutOrder = () => {
       >
         Your order
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "12px",
-          color: "#2b3445",
-        }}
-      >
-        <Typography sx={{ fontSize: "14px" }}>1 x iPhone 12</Typography>
-        <Typography sx={{ fontSize: "14px" }}>$999.00</Typography>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "12px",
-          color: "#2b3445",
-        }}
-      >
-        <Typography sx={{ fontSize: "14px" }}>1 x iPhone 12 pro</Typography>
-        <Typography sx={{ fontSize: "14px" }}>$1,199.00</Typography>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "12px",
-          color: "#2b3445",
-        }}
-      >
-        <Typography sx={{ fontSize: "14px" }}>1 x iPhone 12 pro max</Typography>
-        <Typography sx={{ fontSize: "14px" }}>$1,299.00</Typography>
-      </Box>
+      {uniqueProducts.map((product) => {
+        const sameItemCount = cart.filter(
+          (item) => item._id === product._id
+        ).length;
+
+        return (
+          <Box
+            key={product._id}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "12px",
+              color: "#2b3445",
+            }}
+          >
+            <Typography sx={{ fontSize: "14px" }}>
+              {sameItemCount} x {product.name}
+            </Typography>
+            <Typography sx={{ fontSize: "14px" }}>
+              ${product.offerPrice ? product.offerPrice : product.regularPrice}
+            </Typography>
+          </Box>
+        );
+      })}
+
       <Divider sx={{ marginY: "24px" }} />
       {/* order total Calculate  */}
       <Box
