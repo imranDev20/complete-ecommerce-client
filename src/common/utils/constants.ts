@@ -12,9 +12,16 @@ export const HEADER_LINKS: HeaderLinksType = {
   home: {
     name: "Home",
     route: "/",
+    showInNav: true,
   },
   products: {
     name: "Products",
     route: "/products",
+    showInNav: true,
+  },
+  cart: {
+    name: "Cart",
+    route: "/cart",
+    showInNav: false,
   },
 };

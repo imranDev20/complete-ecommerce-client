@@ -1,16 +1,23 @@
 import React from "react";
 import {
+  Badge,
   Box,
   Container,
   Grid,
+  IconButton,
   Link as MuiLink,
   Paper,
   Stack,
+  Typography,
   styled,
 } from "@mui/material";
 import SearchField from "./search-field";
-import { HEADER_LINKS as navLinks } from "@/common/utils/constants";
+import {
+  HEADER_LINKS,
+  HEADER_LINKS as navLinks,
+} from "@/common/utils/constants";
 import Link from "next/link";
+import HeaderRightOptions from "./header-right-options";
 
 const Header = () => {
   return (
@@ -23,8 +30,16 @@ const Header = () => {
           <Grid item sm={6}>
             <SearchField />
           </Grid>
-          <Grid item sm={3}>
-            Block 2
+          <Grid
+            item
+            sm={3}
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <HeaderRightOptions />
           </Grid>
         </Grid>
       </Container>
@@ -40,23 +55,29 @@ const Header = () => {
             sx={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "flex-end",
             }}
           >
-            {Object.keys(navLinks).map((key: string, index) => (
-              <MuiLink
-                sx={{
-                  mr: 5,
-                  textDecoration: "none",
-                  color: "text.secondary",
-                  fontSize: 14,
-                }}
-                component={Link}
-                key={index}
-                href={navLinks[key].route}
-              >
-                {navLinks[key].name}
-              </MuiLink>
-            ))}
+            {Object.keys(navLinks).map((key: string, index) =>
+              navLinks[key].showInNav ? (
+                <MuiLink
+                  sx={{
+                    mr: 5,
+                    textDecoration: "none",
+                    color: "text.secondary",
+                    fontSize: 14,
+                    "&:last-of-type": {
+                      mr: 0,
+                    },
+                  }}
+                  component={Link}
+                  key={index}
+                  href={navLinks[key].route}
+                >
+                  {navLinks[key].name}
+                </MuiLink>
+              ) : null
+            )}
           </Grid>
         </Grid>
       </Container>

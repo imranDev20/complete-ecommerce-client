@@ -25,7 +25,7 @@ import {
   WheelIcon,
 } from "../global/svg-icons";
 
-const ProductMenu = () => {
+const CategoryMenu = () => {
   const catagories = [
     {
       id: "1",
@@ -294,4 +294,4 @@ const ProductMenu = () => {
   );
 };
 
-export default ProductMenu;
+export default CategoryMenu;

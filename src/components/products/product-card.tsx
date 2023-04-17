@@ -13,23 +13,15 @@ import { slugifyTitle } from "@/common/utils/functions";
 import { Product as ProductType } from "@/common/types/product.types";
 import Link from "next/link";
 import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart, deleteFromCart } from "@/redux/slices/cartSlice";
+
+import ProductCardButtons from "./product-card-buttons";
 
 type ProductCardProps = {
   product: ProductType;
 };
 
-const ProductCard = (props: ProductCardProps) => {
-  const cart = useAppSelector((state) => state.cart.products);
-  const dispatch = useAppDispatch();
-
-  console.log(cart);
-
-  const { product } = props;
-
+const ProductCard = ({ product }: ProductCardProps) => {
   const slug = slugifyTitle(product.name);
-  const sameItemCount = cart.filter((item) => item._id === product._id).length;
 
   return (
     <Card sx={{ p: 0, position: "relative" }}>
@@ -38,8 +30,6 @@ const ProductCard = (props: ProductCardProps) => {
           <Image src={product.image} alt={product.name} fill quality={100} />
         </Box>
       </Link>
-
-      {/* <Divider /> */}
 
       <Typography
         sx={{
@@ -122,41 +112,7 @@ const ProductCard = (props: ProductCardProps) => {
           </Box>
         </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column-reverse",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            size="small"
-            variant="outlined"
-            aria-label="add"
-            onClick={() => dispatch(addToCart(product))}
-            sx={{ padding: "2px", minWidth: "unset" }}
-          >
-            <AddIcon />
-          </Button>
-
-          {sameItemCount > 0 ? (
-            <>
-              <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
-                {sameItemCount}
-              </Typography>
-              <Button
-                onClick={() => dispatch(deleteFromCart(product._id))}
-                size="small"
-                variant="outlined"
-                aria-label="remove"
-                sx={{ padding: "2px", minWidth: "unset" }}
-              >
-                <RemoveIcon />
-              </Button>
-            </>
-          ) : null}
-        </Box>
+        <ProductCardButtons product={product} />
       </CardContent>
     </Card>
   );
