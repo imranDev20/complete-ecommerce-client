@@ -12,6 +12,8 @@ const CheckoutOrder = () => {
     (value, index, self) => index === self.findIndex((t) => t._id === value._id)
   );
 
+  const calculateTotal = () => {};
+
   return (
     <Box>
       <Typography

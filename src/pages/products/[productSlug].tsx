@@ -309,7 +309,9 @@ const ProductDetailsPage: NextPage<ProductProps> = ({
           </Box>
         </Grid>
       </Grid>
-      <Box>{/* <ProductDescriptionReview /> */}</Box>
+      <Box>
+        <ProductDescriptionReview />
+      </Box>
     </Container>
   );
 };

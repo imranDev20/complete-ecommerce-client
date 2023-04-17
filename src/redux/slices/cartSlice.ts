@@ -3,18 +3,19 @@ import {
   Products as ProductsType,
 } from "@/common/types/product.types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
 
 type CartStateType = {
   products: ProductsType;
   persisted: boolean;
   count: number;
+  open: boolean;
 };
 
 const initialState: CartStateType = {
   products: [],
   persisted: false,
   count: 0,
+  open: false,
 };
 
 export const cartSlice = createSlice({

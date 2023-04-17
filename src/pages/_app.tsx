@@ -10,7 +10,7 @@ import { persistor, store } from "../redux/store";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/createEmotionCache";
 import theme from "@/theme";
-import Header from "@/components/global/header";
+import Header from "@/components/global/header/header";
 import Footer from "@/components/global/footer";
 import { PersistGate } from "redux-persist/integration/react";
 
