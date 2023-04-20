@@ -31,7 +31,7 @@ const Hero = () => {
                 key={index}
                 index={0}
                 style={{
-                  minHeight: "300px",
+                  minHeight: "400px",
                   px: 10,
                 }}
               >

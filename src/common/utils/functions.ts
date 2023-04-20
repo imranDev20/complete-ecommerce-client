@@ -1,12 +1,30 @@
 import slugify from "slugify";
+import { Product, Products } from "../types/product.types";
+import { CartItem, CartItems } from "../types/cart.types";
 
-export function slugifyTitle(title: string) {
+export const slugifyTitle = (title: string): string => {
   return slugify(title, {
-    replacement: "-", // replace spaces with replacement character, defaults to `-`
-    remove: undefined, // remove characters that match regex, defaults to `undefined`
-    lower: true, // convert to lower case, defaults to `false`
-    strict: true, // strip special characters except replacement, defaults to `false`
+    replacement: "-",
+    remove: undefined,
+    lower: true,
+    strict: true,
     locale: "vi", // language code of the locale to use
-    trim: true, // trim leading and trailing replacement chars, defaults to `true`
+    trim: true,
   });
-}
+};
+
+export const getCartItem = (product: Product): CartItem => ({
+  _id: product._id,
+  name: product.name,
+  price: product.offerPrice
+    ? parseFloat(product.offerPrice)
+    : parseFloat(product.regularPrice),
+  imageURL: product.image,
+  quantity: 1,
+  store: "string",
+  attributes: product.attributes.map((attribute) => ({
+    ...attribute,
+    value: attribute.values[0],
+  })),
+  unit: product.unit,
+});

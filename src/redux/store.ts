@@ -9,10 +9,17 @@ import cartReducer from "./slices/cartSlice";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["cart"],
+};
+
+const cartPersistConfig = {
+  key: "cart",
+  storage: storage,
+  blacklist: ["drawerOpen"],
 };
 
 const rootReducer = combineReducers({
-  cart: cartReducer,
+  cart: persistReducer(cartPersistConfig, cartReducer),
   user: userReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);

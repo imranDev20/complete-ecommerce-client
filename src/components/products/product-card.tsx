@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Rating,
-  Typography,
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import { Box, Card, CardContent, Rating, Typography } from "@mui/material";
 import { slugifyTitle } from "@/common/utils/functions";
 import { Product as ProductType } from "@/common/types/product.types";
 import Link from "next/link";
@@ -97,7 +88,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 fontSize: "14px",
               }}
             >
-              US{product.regularPrice}
+              US{product.offerPrice}
             </Typography>
             <Typography
               sx={{
@@ -107,7 +98,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 textDecoration: "line-through",
               }}
             >
-              {product.offerPrice}
+              {product.regularPrice}
             </Typography>
           </Box>
         </Box>

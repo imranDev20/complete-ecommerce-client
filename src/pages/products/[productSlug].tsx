@@ -1,25 +1,36 @@
-import ProductDescription from "@/components/products/product-description";
-import ProductDescriptionReview from "@/components/products/product-description-review";
-
 import {
   Box,
   Button,
   Container,
   Grid,
   Rating,
+  Stack,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import { GetServerSidePropsContext, NextPage } from "next";
-import React from "react";
-import { Product as ProductType } from "@/common/types/product.types";
-import { getProductDetails } from "@/services/product-services";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { NumericFormat } from "react-number-format";
-import { addToCart } from "@/redux/slices/cartSlice";
+
+import { getProductDetails } from "@/services/product-services";
+import {
+  addToCart,
+  deleteFromCart,
+  updateItemQuantity,
+} from "@/redux/slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getCartItem } from "@/common/utils/functions";
+import {
+  ProductAttribute,
+  Product as ProductType,
+} from "@/common/types/product.types";
+import ProductDescription from "@/components/products/product-description";
+import ProductDescriptionReview from "@/components/products/product-description-review";
+import { CartItemAttribute } from "@/common/types/cart.types";
 
 const CustomToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   ".MuiToggleButtonGroup-grouped:not(:first-of-type)": {
@@ -61,10 +72,73 @@ type ProductProps = {
 const ProductDetailsPage: NextPage<ProductProps> = ({
   product,
 }: ProductProps) => {
-  const cart = useAppSelector((state) => state.cart.products);
+  const cart = useAppSelector((state) => state.cart.cartItems);
   const dispatch = useAppDispatch();
 
-  const [alignment, setAlignment] = React.useState("web");
+  const [attributes, setAttributes] = useState<CartItemAttribute[]>(
+    product.attributes.map((item) => ({
+      _id: item._id,
+      name: item.name,
+      unit: item.unit,
+      value: item.values[0],
+    }))
+  );
+
+  const isProductInCart = cart.map((item) => item._id).includes(product._id);
+  const productInCart = cart.find((item) => item._id === product._id);
+
+  const handleAttributeChange = (
+    item: ProductAttribute,
+    value: string,
+    index: number
+  ): void => {
+    const newAttributes = [...attributes];
+
+    const cartItemAttribute = {
+      _id: item._id,
+      name: item.name,
+      unit: item.unit,
+      value: value,
+    };
+    newAttributes[index] = cartItemAttribute;
+    setAttributes(newAttributes);
+  };
+
+  const handleAddToCart = (): void => {
+    const cartItem = getCartItem(product);
+
+    const newCartItem = {
+      ...cartItem,
+      attributes,
+    };
+    const isAttributesSame =
+      JSON.stringify(productInCart?.attributes) ===
+      JSON.stringify(newCartItem.attributes);
+
+    if (isProductInCart && productInCart && isAttributesSame) {
+      dispatch(
+        updateItemQuantity({
+          id: product._id,
+          type: "increase",
+        })
+      );
+    } else {
+      dispatch(addToCart(newCartItem));
+    }
+  };
+
+  const handleDeleteFromCart = (): void => {
+    if (isProductInCart && productInCart && productInCart.quantity > 1) {
+      dispatch(
+        updateItemQuantity({
+          id: product._id,
+          type: "decrease",
+        })
+      );
+    } else {
+      dispatch(deleteFromCart(product._id));
+    }
+  };
 
   console.log(cart);
 
@@ -199,37 +273,39 @@ const ProductDetailsPage: NextPage<ProductProps> = ({
               </Typography>
             </Box>
 
-            {product.attributes.map((item, index) => (
-              <Box sx={{ marginBottom: "16px" }} key={index}>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    marginBottom: "8px",
-                    color: "#2b3445",
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {item.name}
-                </Typography>
-                <CustomToggleButtonGroup
-                  color="primary"
-                  value={alignment}
-                  exclusive
-                  size="small"
-                  onChange={(e: React.MouseEvent<HTMLElement>, value: string) =>
-                    setAlignment(value)
-                  }
-                  aria-label="Platform"
-                >
-                  {item.value.map((val) => (
-                    <ToggleButton key={val} value="web">
-                      {val} {item.unit}
-                    </ToggleButton>
-                  ))}
-                </CustomToggleButtonGroup>
-              </Box>
-            ))}
+            {product.attributes.map((item, index) => {
+              return (
+                <Box sx={{ marginBottom: "16px" }} key={index}>
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      marginBottom: "8px",
+                      color: "#2b3445",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {item.name}
+                  </Typography>
+                  <CustomToggleButtonGroup
+                    color="primary"
+                    exclusive
+                    size="small"
+                    value={attributes[index].value}
+                    onChange={(
+                      e: React.MouseEvent<HTMLElement>,
+                      value: string
+                    ) => handleAttributeChange(item, value, index)}
+                  >
+                    {item.values.map((val) => (
+                      <ToggleButton key={val} value={val}>
+                        {val} {item.unit}
+                      </ToggleButton>
+                    ))}
+                  </CustomToggleButtonGroup>
+                </Box>
+              );
+            })}
 
             <Box sx={{ paddingTop: "9px", marginBottom: "24px" }}>
               <Typography
@@ -263,21 +339,50 @@ const ProductDetailsPage: NextPage<ProductProps> = ({
               </Typography>
             </Box>
             <Box sx={{ marginBottom: "30px" }}>
-              <Button
-                size="large"
-                variant="contained"
-                disableElevation
-                onClick={() => dispatch(addToCart(product))}
-                sx={{
-                  py: "6px",
-                  px: "25px",
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                }}
-              >
-                Add To Cart
-              </Button>
+              {isProductInCart && productInCart ? (
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  alignItems="center"
+                  height="34.75px"
+                >
+                  <Button
+                    onClick={handleDeleteFromCart}
+                    size="small"
+                    variant="outlined"
+                    aria-label="remove"
+                    sx={{ padding: "2px", minWidth: "unset" }}
+                  >
+                    <Remove />
+                  </Button>
+                  <Typography>{productInCart.quantity}</Typography>
+                  <Button
+                    onClick={handleAddToCart}
+                    size="small"
+                    variant="outlined"
+                    aria-label="add"
+                    sx={{ padding: "2px", minWidth: "unset" }}
+                  >
+                    <Add />
+                  </Button>
+                </Stack>
+              ) : (
+                <Button
+                  size="small"
+                  variant="contained"
+                  disableElevation
+                  onClick={handleAddToCart}
+                  sx={{
+                    py: "6px",
+                    px: "25px",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                    alignItems: "center",
+                  }}
+                >
+                  Add To Cart
+                </Button>
+              )}
             </Box>
             <Box
               sx={{

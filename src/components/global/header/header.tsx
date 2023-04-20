@@ -1,21 +1,7 @@
 import React from "react";
-import {
-  Badge,
-  Box,
-  Container,
-  Grid,
-  IconButton,
-  Link as MuiLink,
-  Paper,
-  Stack,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Box, Container, Grid, Link as MuiLink } from "@mui/material";
 import SearchField from "./search-field";
-import {
-  HEADER_LINKS,
-  HEADER_LINKS as navLinks,
-} from "@/common/utils/constants";
+import { HEADER_LINKS as navLinks } from "@/common/utils/constants";
 import Link from "next/link";
 import HeaderRightOptions from "./header-right-options";
 

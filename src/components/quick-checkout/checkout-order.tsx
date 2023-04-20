@@ -1,18 +1,10 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
+import { NumericFormat } from "react-number-format";
 
 const CheckoutOrder = () => {
-  const cart = useAppSelector((state) => state.cart.products);
-  const dispatch = useAppDispatch();
-
-  console.log(cart);
-
-  const uniqueProducts = cart.filter(
-    (value, index, self) => index === self.findIndex((t) => t._id === value._id)
-  );
-
-  const calculateTotal = () => {};
+  const cart = useAppSelector((state) => state.cart.cartItems);
 
   return (
     <Box>
@@ -26,31 +18,26 @@ const CheckoutOrder = () => {
       >
         Your order
       </Typography>
-      {uniqueProducts.map((product) => {
-        const sameItemCount = cart.filter(
-          (item) => item._id === product._id
-        ).length;
-
-        return (
-          <Box
-            key={product._id}
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "12px",
-              color: "#2b3445",
-            }}
-          >
-            <Typography sx={{ fontSize: "14px" }}>
-              {sameItemCount} x {product.name}
-            </Typography>
-            <Typography sx={{ fontSize: "14px" }}>
-              ${product.offerPrice ? product.offerPrice : product.regularPrice}
-            </Typography>
-          </Box>
-        );
-      })}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "12px",
+          color: "#2b3445",
+        }}
+      >
+        <Typography sx={{ fontSize: "14px" }}></Typography>
+        <Typography sx={{ fontSize: "14px" }}>
+          $
+          <NumericFormat
+            thousandsGroupStyle="thousand"
+            thousandSeparator=","
+            displayType="text"
+            renderText={(value) => <b>{value}</b>}
+          />
+        </Typography>
+      </Box>
 
       <Divider sx={{ marginY: "24px" }} />
       {/* order total Calculate  */}
@@ -67,7 +54,13 @@ const CheckoutOrder = () => {
         <Typography
           sx={{ fontSize: "14px", fontWeight: 700, color: "#2b3445" }}
         >
-          $2,610.00
+          $
+          <NumericFormat
+            thousandsGroupStyle="thousand"
+            thousandSeparator=","
+            displayType="text"
+            renderText={(value) => <b>{value}</b>}
+          />
         </Typography>
       </Box>
       <Box

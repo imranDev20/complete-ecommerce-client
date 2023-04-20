@@ -13,6 +13,7 @@ import theme from "@/theme";
 import Header from "@/components/global/header/header";
 import Footer from "@/components/global/footer";
 import { PersistGate } from "redux-persist/integration/react";
+import CartDrawer from "@/components/global/cart-drawer/cart-drawer";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -36,6 +37,7 @@ export default function MyApp(props: MyAppProps) {
             <Header />
             <Component {...pageProps} />
             <Footer />
+            <CartDrawer />
           </ThemeProvider>
         </PersistGate>
       </Provider>

@@ -41,7 +41,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-const CatagoriesAccordion = ({ catagory }: any) => {
+const CatagoriesAccordion = ({ category }: any) => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -93,7 +93,7 @@ const CatagoriesAccordion = ({ catagory }: any) => {
               },
             }}
           >
-            {catagory.icon}
+            <category.icon />
           </Box>
           <Typography
             sx={{
@@ -104,11 +104,11 @@ const CatagoriesAccordion = ({ catagory }: any) => {
               transition: "color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             }}
           >
-            {catagory.name}
+            {category.name}
           </Typography>
         </AccordionSummary>
 
-        {catagory.subCatagory.map((sub: any) => (
+        {category.subCatagory.map((sub: any) => (
           <AccordionDetails key={sub.id} sx={{ p: 0 }}>
             <ButtonBase
               sx={{

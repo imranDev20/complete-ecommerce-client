@@ -1,6 +1,7 @@
-type Attributes = {
+export type ProductAttribute = {
+  _id: number;
   name: string;
-  value: string[];
+  values: string[];
   unit: string | null;
 };
 
@@ -21,7 +22,7 @@ export type Product = {
   brand: string;
   rating: number;
   stock: number;
-  attributes: Attributes[];
+  attributes: ProductAttribute[];
   image: string;
   reviews: Reviews[];
 };
